@@ -1,12 +1,41 @@
 package com.huynhtdt.ecomerce.service;
 
 import com.huynhtdt.ecomerce.entity.Category;
+import com.huynhtdt.ecomerce.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
-public interface CategoryService {
-    List<Category> getAllCategories();
-    Category getCategoryById(Long id);
-    Category createCategory(Category category);
-    Category updateCategory(Long id, Category category);
-    void deleteCategory(Long id);
+@Service
+public class CategoryService {
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
+    }
+
+    public Category getCategoryById(Long id) {
+        return categoryRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
+    }
+
+    public Category createCategory(Category category) {
+        return categoryRepository.save(category);
+    }
+
+    public Category updateCategory(Long id, Category categoryDetails) {
+        Category category = getCategoryById(id);
+        category.setName(categoryDetails.getName());
+        category.setDescription(categoryDetails.getDescription());
+        return categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long id) {
+        Category category = getCategoryById(id);
+        categoryRepository.delete(category);
+    }
 }
+

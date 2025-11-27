@@ -1,48 +1,48 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface User {
   id: number;
   email: string;
   fullName: string;
-  roles?: string[];
-  address?: string;
+  roles: string[];
   phone?: string;
+  address?: string;
 }
 
 interface AuthState {
   user: User | null;
   token: string | null;
-  isAuthenticated: boolean;
   setAuth: (user: User, token: string) => void;
   logout: () => void;
-  loadFromStorage: () => void;
+  isAdmin: () => boolean;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  user: null,
-  token: null,
-  isAuthenticated: false,
-  setAuth: (user: User, token: string) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set, get) => ({
+      user: null,
+      token: null,
+      setAuth: (user, token) => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', token);
+        }
+        set({ user, token });
+      },
+      logout: () => {
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('token');
+        }
+        set({ user: null, token: null });
+      },
+      isAdmin: () => {
+        const { user } = get();
+        return user?.roles?.includes('ADMIN') || false;
+      },
+    }),
+    {
+      name: 'auth-storage',
     }
-    set({ user, token, isAuthenticated: true });
-  },
-  logout: () => {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-    }
-    set({ user: null, token: null, isAuthenticated: false });
-  },
-  loadFromStorage: () => {
-    if (typeof window !== 'undefined') {
-      const token = localStorage.getItem('token');
-      const user = localStorage.getItem('user');
-      if (token && user) {
-        set({ token, user: JSON.parse(user), isAuthenticated: true });
-      }
-    }
-  },
-}));
+  )
+);
+

@@ -1,12 +1,8 @@
 package com.huynhtdt.ecomerce.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class RegisterRequest {
     private String email;
     private String password;
@@ -14,3 +10,4 @@ public class RegisterRequest {
     private String phone;
     private String address;
 }
+

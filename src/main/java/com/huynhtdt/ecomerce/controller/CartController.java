@@ -1,13 +1,12 @@
 package com.huynhtdt.ecomerce.controller;
 
 import com.huynhtdt.ecomerce.dto.CartItemRequest;
-import com.huynhtdt.ecomerce.entity.CartItem;
+import com.huynhtdt.ecomerce.entity.Cart;
 import com.huynhtdt.ecomerce.service.CartService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/cart")
@@ -18,18 +17,23 @@ public class CartController {
     private CartService cartService;
 
     @GetMapping
-    public ResponseEntity<List<CartItem>> getCart() {
+    public ResponseEntity<Cart> getCart() {
         return ResponseEntity.ok(cartService.getCart());
     }
 
     @PostMapping("/items")
-    public ResponseEntity<CartItem> addToCart(@RequestBody CartItemRequest request) {
+    public ResponseEntity<Cart> addToCart(@Valid @RequestBody CartItemRequest request) {
         return ResponseEntity.ok(cartService.addToCart(request));
     }
 
-    @DeleteMapping("/items/{productId}")
-    public ResponseEntity<Void> removeFromCart(@PathVariable Long productId) {
-        cartService.removeFromCart(productId);
+    @PutMapping("/items/{itemId}")
+    public ResponseEntity<Cart> updateCartItem(@PathVariable Long itemId, @RequestParam Integer quantity) {
+        return ResponseEntity.ok(cartService.updateCartItem(itemId, quantity));
+    }
+
+    @DeleteMapping("/items/{itemId}")
+    public ResponseEntity<Void> removeFromCart(@PathVariable Long itemId) {
+        cartService.removeFromCart(itemId);
         return ResponseEntity.ok().build();
     }
 
@@ -39,3 +43,4 @@ public class CartController {
         return ResponseEntity.ok().build();
     }
 }
+

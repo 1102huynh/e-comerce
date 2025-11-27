@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import api from '@/lib/api';
+import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
-import toast from 'react-hot-toast';
+import { toast } from '@/lib/toast';
+
+const api = apiModule.default;
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -22,8 +24,9 @@ export default function LoginPage() {
 
     try {
       const response = await api.post('/auth/login', { email, password });
-      const { token, id, fullName, roles } = response.data;
-      setAuth({ id, email, fullName, roles }, token);
+      const { token, userId, fullName, roles } = response.data;
+      console.log('Login response:', response.data);
+      setAuth({ id: userId, email, fullName, roles }, token);
 
       // Remember me functionality
       if (rememberMe) {
@@ -35,6 +38,7 @@ export default function LoginPage() {
       toast.success('🎉 Welcome back! Logging in...');
       router.push('/products');
     } catch (error: any) {
+      console.error('Login error:', error);
       toast.error(error.response?.data?.message || '❌ Login failed. Check your credentials.');
     } finally {
       setLoading(false);

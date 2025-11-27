@@ -29,9 +29,17 @@ public class OrderService {
     private ProductRepository productRepository;
 
     private User getCurrentUser() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        try {
+            var authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication == null || !authentication.isAuthenticated()) {
+                throw new RuntimeException("User is not authenticated. Please login again.");
+            }
+            String email = authentication.getName();
+            return userRepository.findByEmail(email)
+                    .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get current user: " + e.getMessage(), e);
+        }
     }
 
     @Transactional

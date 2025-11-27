@@ -1,6 +1,9 @@
 package com.huynhtdt.ecomerce.config;
 
 import com.huynhtdt.ecomerce.security.JwtAuthenticationFilter;
+import com.huynhtdt.ecomerce.security.JwtTokenProvider;
+import com.huynhtdt.ecomerce.security.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,9 +28,15 @@ import java.util.Arrays;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
+
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter();
+        return new JwtAuthenticationFilter(jwtTokenProvider, customUserDetailsService);
     }
 
     @Bean

@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import api from '@/lib/api';
+import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
-import toast from 'react-hot-toast';
+import { toast } from '@/lib/toast';
+
+const api = apiModule.default;
 
 interface Product {
   id: number;

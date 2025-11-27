@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import api from '@/lib/api';
+import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '@/store/cartStore';
-import toast from 'react-hot-toast';
+import { toast } from '@/lib/toast';
+
+const api = apiModule.default;
 
 interface CartItem {
   id: number;

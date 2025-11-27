@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import api from '@/lib/api';
+import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
-import toast from 'react-hot-toast';
+import { toast } from '@/lib/toast';
+
+const api = apiModule.default;
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -28,11 +30,13 @@ export default function RegisterPage() {
 
     try {
       const response = await api.post('/auth/register', formData);
-      const { token, id, email, fullName, roles } = response.data;
-      setAuth({ id, email, fullName, roles }, token);
+      const { token, userId, email, fullName, roles } = response.data;
+      console.log('Register response:', response.data);
+      setAuth({ id: userId, email, fullName, roles }, token);
       toast.success('🎉 Welcome! Your account has been created successfully!');
       router.push('/products');
     } catch (error: any) {
+      console.error('Register error:', error);
       toast.error(error.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);

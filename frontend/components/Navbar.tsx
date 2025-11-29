@@ -4,13 +4,19 @@ import Link from 'next/link';
 import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '@/store/cartStore';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const { user, logout } = useAuthStore();
-  const { getTotalItems } = useCartStore();
+  const { getTotalItems, items } = useCartStore();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setIsHydrated(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -34,11 +40,23 @@ export default function Navbar() {
               🛍️ Shop
             </Link>
 
-            {user ? (
+            {!isHydrated ? (
+              <>
+                <Link href="/login" className="hover:text-gray-300 font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
+                  🔓 Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition-all shadow-lg transform hover:scale-105"
+                >
+                  ✨ Register
+                </Link>
+              </>
+            ) : user ? (
               <>
                 <Link href="/cart" className="hover:text-gray-300 relative font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
                   🛒 Cart
-                  {getTotalItems() > 0 && (
+                  {items.length > 0 && (
                     <span className="absolute -top-1 -right-1 bg-white text-black rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold shadow-lg animate-pulse">
                       {getTotalItems()}
                     </span>
@@ -87,7 +105,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
+        {mobileMenuOpen && isHydrated && (
           <div className="md:hidden pb-4 space-y-2 border-t border-gray-800 pt-4">
             <Link href="/products" className="block hover:text-gray-300 font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
               🛍️ Shop
@@ -96,7 +114,7 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link href="/cart" className="block hover:text-gray-300 relative font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
-                  🛒 Cart {getTotalItems() > 0 && <span className="text-red-400">({getTotalItems()})</span>}
+                  🛒 Cart {items.length > 0 && <span className="text-red-400">({getTotalItems()})</span>}
                 </Link>
                 <Link href="/orders" className="block hover:text-gray-300 font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
                   📦 Orders

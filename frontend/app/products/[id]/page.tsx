@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
+import { useCartStore } from '@/store/cartStore';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -27,6 +28,7 @@ export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { user } = useAuthStore();
+  const { addItem } = useCartStore();
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [quantity, setQuantity] = useState(1);
@@ -62,10 +64,25 @@ export default function ProductDetailPage() {
 
     setAddingToCart(true);
     try {
-      await api.post('/cart/items', {
+      const response = await api.post('/cart/items', {
         productId: product?.id,
         quantity,
       });
+
+      // Update local cart store immediately for UI feedback
+      if (product) {
+        addItem({
+          id: response.data.id || Math.random(),
+          product: {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            imageUrl: product.imageUrl,
+          },
+          quantity,
+        });
+      }
+
       toast.success(`Added ${quantity} item${quantity > 1 ? 's' : ''} to cart!`);
       setQuantity(1);
     } catch (error) {
@@ -98,7 +115,7 @@ export default function ProductDetailPage() {
         <div className="text-center">
           <div className="text-8xl mb-6">😢</div>
           <h1 className="text-3xl font-black text-white mb-4">Product Not Found</h1>
-          <p className="text-gray-400 mb-8">The product you're looking for doesn't exist or has been removed.</p>
+          <p className="text-gray-400 mb-8">The product you&apos;re looking for doesn&apos;t exist or has been removed.</p>
           <Link href="/products" className="inline-block bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-all transform hover:scale-105 shadow-lg">
             ← Back to Products
           </Link>

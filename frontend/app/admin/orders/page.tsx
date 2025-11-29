@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as apiModule from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthHydration } from '@/hooks/useAuthHydration';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -31,18 +31,20 @@ interface Order {
 }
 
 export default function AdminOrdersPage() {
-  const { user, isAdmin } = useAuthStore();
+  const { isHydrated, user, isAdmin } = useAuthHydration();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!isHydrated) return;
+
     if (!user || !isAdmin()) {
       router.push('/');
       return;
     }
     fetchOrders();
-  }, [user]);
+  }, [isHydrated, user, isAdmin, router]);
 
   const fetchOrders = async () => {
     try {
@@ -92,6 +94,12 @@ export default function AdminOrdersPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
+        <button
+          onClick={() => router.push('/admin')}
+          className="mb-6 flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors font-semibold"
+        >
+          ← Back to Dashboard
+        </button>
         <div className="text-center mb-12">
           <div className="text-6xl mb-4 inline-block">📋</div>
           <h1 className="text-5xl md:text-6xl font-black text-white mb-3">Manage Orders</h1>

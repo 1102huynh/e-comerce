@@ -201,11 +201,354 @@ public class DataInitializer implements CommandLineRunner {
             product12.setImageUrl("https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600");
             product12.setCategory(trucker);
             productRepository.save(product12);
+
+            Product product13 = new Product();
+            product13.setName("Navy Blue Baseball Cap");
+            product13.setDescription("Classic navy blue baseball cap with white stitching. Versatile and comfortable for all occasions.");
+            product13.setPrice(new BigDecimal("22.99"));
+            product13.setStock(140);
+            product13.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product13.setCategory(baseball);
+            productRepository.save(product13);
+
+            Product product14 = new Product();
+            product14.setName("Red Snapback Cap");
+            product14.setDescription("Bold red snapback with adjustable fit. Perfect for sports fans and casual style.");
+            product14.setPrice(new BigDecimal("28.99"));
+            product14.setStock(95);
+            product14.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product14.setCategory(snapback);
+            productRepository.save(product14);
+
+            Product product15 = new Product();
+            product15.setName("White Mesh Trucker");
+            product15.setDescription("Cool white mesh trucker hat with solid front panel. Great for summer and breathability.");
+            product15.setPrice(new BigDecimal("25.99"));
+            product15.setStock(110);
+            product15.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product15.setCategory(trucker);
+            productRepository.save(product15);
+
+            Product product16 = new Product();
+            product16.setName("Gray Ribbed Beanie");
+            product16.setDescription("Soft gray ribbed beanie with folded cuff. Perfect winter essential.");
+            product16.setPrice(new BigDecimal("21.99"));
+            product16.setStock(160);
+            product16.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product16.setCategory(beanie);
+            productRepository.save(product16);
+
+            Product product17 = new Product();
+            product17.setName("Black Bucket Hat");
+            product17.setDescription("Classic black bucket hat with wide brim. Timeless style for any season.");
+            product17.setPrice(new BigDecimal("30.99"));
+            product17.setStock(85);
+            product17.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product17.setCategory(bucket);
+            productRepository.save(product17);
+
+            Product product18 = new Product();
+            product18.setName("Brown Leather Fedora");
+            product18.setDescription("Rich brown fedora with leather band. Sophisticated and timeless elegance.");
+            product18.setPrice(new BigDecimal("55.99"));
+            product18.setStock(50);
+            product18.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product18.setCategory(fedora);
+            productRepository.save(product18);
+
+            Product product19 = new Product();
+            product19.setName("Olive Green Baseball Cap");
+            product19.setDescription("Military-style olive green baseball cap. Perfect for outdoor enthusiasts.");
+            product19.setPrice(new BigDecimal("23.99"));
+            product19.setStock(130);
+            product19.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product19.setCategory(baseball);
+            productRepository.save(product19);
+
+            Product product20 = new Product();
+            product20.setName("Black Snapback with Logo");
+            product20.setDescription("Sleek black snapback with embroidered logo. Modern urban style.");
+            product20.setPrice(new BigDecimal("31.99"));
+            product20.setStock(105);
+            product20.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product20.setCategory(snapback);
+            productRepository.save(product20);
+
+            Product product21 = new Product();
+            product21.setName("Tan Trucker Hat");
+            product21.setDescription("Neutral tan trucker hat with breathable mesh. Versatile for any outfit.");
+            product21.setPrice(new BigDecimal("27.99"));
+            product21.setStock(100);
+            product21.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product21.setCategory(trucker);
+            productRepository.save(product21);
+
+            Product product22 = new Product();
+            product22.setName("Burgundy Knit Beanie");
+            product22.setDescription("Rich burgundy knit beanie perfect for fall and winter fashion.");
+            product22.setPrice(new BigDecimal("23.99"));
+            product22.setStock(125);
+            product22.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product22.setCategory(beanie);
+            productRepository.save(product22);
+
+            Product product23 = new Product();
+            product23.setName("Khaki Bucket Hat");
+            product23.setDescription("Comfortable khaki bucket hat with adjustable chin strap. Perfect for outdoor adventures.");
+            product23.setPrice(new BigDecimal("31.99"));
+            product23.setStock(90);
+            product23.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product23.setCategory(bucket);
+            productRepository.save(product23);
+
+            Product product24 = new Product();
+            product24.setName("Black Wool Fedora");
+            product24.setDescription("Premium black wool fedora with grosgrain ribbon. Timeless formal style.");
+            product24.setPrice(new BigDecimal("58.99"));
+            product24.setStock(40);
+            product24.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product24.setCategory(fedora);
+            productRepository.save(product24);
+
+            Product product25 = new Product();
+            product25.setName("White Sports Cap");
+            product25.setDescription("Clean white athletic cap with moisture-wicking technology. Perfect for active wear.");
+            product25.setPrice(new BigDecimal("26.99"));
+            product25.setStock(150);
+            product25.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product25.setCategory(baseball);
+            productRepository.save(product25);
+
+            Product product26 = new Product();
+            product26.setName("Purple Snapback");
+            product26.setDescription("Vibrant purple snapback with bold design. Stand out from the crowd.");
+            product26.setPrice(new BigDecimal("29.99"));
+            product26.setStock(80);
+            product26.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product26.setCategory(snapback);
+            productRepository.save(product26);
+
+            Product product27 = new Product();
+            product27.setName("Gray Mesh Trucker");
+            product27.setDescription("Light gray trucker hat with ventilated mesh back. Cool and comfortable.");
+            product27.setPrice(new BigDecimal("26.99"));
+            product27.setStock(115);
+            product27.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product27.setCategory(trucker);
+            productRepository.save(product27);
+
+            Product product28 = new Product();
+            product28.setName("Black Pom Pom Beanie");
+            product28.setDescription("Cute black beanie with fluffy pom-pom. Cozy winter accessory.");
+            product28.setPrice(new BigDecimal("24.99"));
+            product28.setStock(140);
+            product28.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product28.setCategory(beanie);
+            productRepository.save(product28);
+
+            Product product29 = new Product();
+            product29.setName("Navy Bucket Hat");
+            product29.setDescription("Deep navy bucket hat with washed finish. Classic and comfortable.");
+            product29.setPrice(new BigDecimal("29.99"));
+            product29.setStock(95);
+            product29.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product29.setCategory(bucket);
+            productRepository.save(product29);
+
+            Product product30 = new Product();
+            product30.setName("Charcoal Fedora");
+            product30.setDescription("Sophisticated charcoal fedora with leather trim. Elegant for special occasions.");
+            product30.setPrice(new BigDecimal("52.99"));
+            product30.setStock(55);
+            product30.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product30.setCategory(fedora);
+            productRepository.save(product30);
+
+            Product product31 = new Product();
+            product31.setName("Maroon Baseball Cap");
+            product31.setDescription("Deep maroon baseball cap with curved bill. Perfect for casual style.");
+            product31.setPrice(new BigDecimal("24.99"));
+            product31.setStock(135);
+            product31.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product31.setCategory(baseball);
+            productRepository.save(product31);
+
+            Product product32 = new Product();
+            product32.setName("Teal Snapback");
+            product32.setDescription("Fresh teal snapback cap. Modern color for fashion-forward style.");
+            product32.setPrice(new BigDecimal("30.99"));
+            product32.setStock(85);
+            product32.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product32.setCategory(snapback);
+            productRepository.save(product32);
+
+            Product product33 = new Product();
+            product33.setName("Vintage Black Trucker");
+            product33.setDescription("Vintage-style black trucker hat with classic mesh back. Retro cool.");
+            product33.setPrice(new BigDecimal("28.99"));
+            product33.setStock(100);
+            product33.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product33.setCategory(trucker);
+            productRepository.save(product33);
+
+            Product product34 = new Product();
+            product34.setName("Cream Wool Beanie");
+            product34.setDescription("Soft cream wool beanie for ultimate warmth. Premium winter wear.");
+            product34.setPrice(new BigDecimal("29.99"));
+            product34.setStock(110);
+            product34.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product34.setCategory(beanie);
+            productRepository.save(product34);
+
+            Product product35 = new Product();
+            product35.setName("Green Canvas Bucket");
+            product35.setDescription("Durable green canvas bucket hat. Perfect for outdoor activities.");
+            product35.setPrice(new BigDecimal("32.99"));
+            product35.setStock(80);
+            product35.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product35.setCategory(bucket);
+            productRepository.save(product35);
+
+            Product product36 = new Product();
+            product36.setName("Gray Wool Fedora");
+            product36.setDescription("Classic gray wool fedora. Sophisticated and timeless elegance.");
+            product36.setPrice(new BigDecimal("56.99"));
+            product36.setStock(45);
+            product36.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product36.setCategory(fedora);
+            productRepository.save(product36);
+
+            Product product37 = new Product();
+            product37.setName("Black Dad Hat");
+            product37.setDescription("Casual black dad hat with curved visor. Perfect for everyday wear.");
+            product37.setPrice(new BigDecimal("25.99"));
+            product37.setStock(145);
+            product37.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product37.setCategory(baseball);
+            productRepository.save(product37);
+
+            Product product38 = new Product();
+            product38.setName("Forest Green Snapback");
+            product38.setDescription("Deep forest green snapback. Perfect for nature lovers.");
+            product38.setPrice(new BigDecimal("29.99"));
+            product38.setStock(90);
+            product38.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product38.setCategory(snapback);
+            productRepository.save(product38);
+
+            Product product39 = new Product();
+            product39.setName("Rust Trucker Hat");
+            product39.setDescription("Warm rust color trucker hat with breathable mesh. Stylish and practical.");
+            product39.setPrice(new BigDecimal("27.99"));
+            product39.setStock(105);
+            product39.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product39.setCategory(trucker);
+            productRepository.save(product39);
+
+            Product product40 = new Product();
+            product40.setName("Navy Pom Pom Beanie");
+            product40.setDescription("Navy beanie with white pom-pom. Cute and warm winter accessory.");
+            product40.setPrice(new BigDecimal("24.99"));
+            product40.setStock(135);
+            product40.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product40.setCategory(beanie);
+            productRepository.save(product40);
+
+            Product product41 = new Product();
+            product41.setName("Black Wide Brim Bucket");
+            product41.setDescription("Black bucket hat with extra wide brim for sun protection. Outdoor essential.");
+            product41.setPrice(new BigDecimal("33.99"));
+            product41.setStock(75);
+            product41.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product41.setCategory(bucket);
+            productRepository.save(product41);
+
+            Product product42 = new Product();
+            product42.setName("Camel Fedora");
+            product42.setDescription("Elegant camel-colored fedora. Sophisticated and versatile.");
+            product42.setPrice(new BigDecimal("54.99"));
+            product42.setStock(50);
+            product42.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product42.setCategory(fedora);
+            productRepository.save(product42);
+
+            Product product43 = new Product();
+            product43.setName("Tan Baseball Cap");
+            product43.setDescription("Neutral tan baseball cap. Versatile for any outfit combination.");
+            product43.setPrice(new BigDecimal("23.99"));
+            product43.setStock(140);
+            product43.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product43.setCategory(baseball);
+            productRepository.save(product43);
+
+            Product product44 = new Product();
+            product44.setName("Coral Snapback");
+            product44.setDescription("Vibrant coral snapback. Perfect for spring and summer style.");
+            product44.setPrice(new BigDecimal("28.99"));
+            product44.setStock(85);
+            product44.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product44.setCategory(snapback);
+            productRepository.save(product44);
+
+            Product product45 = new Product();
+            product45.setName("Stone Mesh Trucker");
+            product45.setDescription("Stone color trucker hat with ventilated mesh. Cool and neutral.");
+            product45.setPrice(new BigDecimal("26.99"));
+            product45.setStock(120);
+            product45.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product45.setCategory(trucker);
+            productRepository.save(product45);
+
+            Product product46 = new Product();
+            product46.setName("Heather Gray Beanie");
+            product46.setDescription("Comfortable heather gray beanie. Perfect for everyday winter wear.");
+            product46.setPrice(new BigDecimal("22.99"));
+            product46.setStock(150);
+            product46.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product46.setCategory(beanie);
+            productRepository.save(product46);
+
+            Product product47 = new Product();
+            product47.setName("White Cotton Bucket");
+            product47.setDescription("Clean white cotton bucket hat. Perfect for beach days.");
+            product47.setPrice(new BigDecimal("28.99"));
+            product47.setStock(100);
+            product47.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product47.setCategory(bucket);
+            productRepository.save(product47);
+
+            Product product48 = new Product();
+            product48.setName("Navy Dress Fedora");
+            product48.setDescription("Navy dress fedora with silk band. Elegant for formal occasions.");
+            product48.setPrice(new BigDecimal("59.99"));
+            product48.setStock(40);
+            product48.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product48.setCategory(fedora);
+            productRepository.save(product48);
+
+            Product product49 = new Product();
+            product49.setName("Khaki Dad Hat");
+            product49.setDescription("Casual khaki dad hat. Perfect for relaxed everyday style.");
+            product49.setPrice(new BigDecimal("24.99"));
+            product49.setStock(130);
+            product49.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product49.setCategory(baseball);
+            productRepository.save(product49);
+
+            Product product50 = new Product();
+            product50.setName("Gold Metallic Snapback");
+            product50.setDescription("Trendy gold metallic snapback. Statement piece for fashion enthusiasts.");
+            product50.setPrice(new BigDecimal("32.99"));
+            product50.setStock(70);
+            product50.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product50.setCategory(snapback);
+            productRepository.save(product50);
         }
 
         System.out.println("Sample data initialized successfully!");
         System.out.println("Admin user: admin@example.com / admin123");
         System.out.println("Regular user: user@example.com / user123");
+        System.out.println("Total products loaded: 50 samples");
     }
 }
 

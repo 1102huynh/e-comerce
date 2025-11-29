@@ -1,29 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthHydration } from '@/hooks/useAuthHydration';
 
 export default function AdminPage() {
-  const { user, isAdmin } = useAuthStore();
+  const { isHydrated, user, isAdmin } = useAuthHydration();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Give time for auth to hydrate from localStorage
-    const timer = setTimeout(() => {
-      if (!user || !isAdmin()) {
-        router.push('/login');
-      } else {
-        setIsLoading(false);
-      }
-    }, 100);
+    if (!isHydrated) return;
 
-    return () => clearTimeout(timer);
-  }, [user, isAdmin, router]);
+    if (!user || !isAdmin()) {
+      router.push('/login');
+    }
+  }, [isHydrated, user, isAdmin, router]);
 
-  if (isLoading) {
+  if (!isHydrated) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-white text-xl">Loading...</div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
+import { useCartStore } from '@/store/cartStore';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -23,6 +24,7 @@ interface Product {
 
 export default function ProductCard({ product }: { product: Product }) {
   const { user } = useAuthStore();
+  const { addItem } = useCartStore();
 
   const addToCart = async () => {
     if (!user) {
@@ -31,10 +33,23 @@ export default function ProductCard({ product }: { product: Product }) {
     }
 
     try {
-      await api.post('/cart/items', {
+      const response = await api.post('/cart/items', {
         productId: product.id,
         quantity: 1,
       });
+
+      // Update local cart store immediately
+      addItem({
+        id: response.data.id || Math.random(),
+        product: {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        },
+        quantity: 1,
+      });
+
       toast.success('Added to cart!');
     } catch (error) {
       toast.error('Failed to add to cart');

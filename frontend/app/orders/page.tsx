@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as apiModule from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthHydration } from '@/hooks/useAuthHydration';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -31,18 +31,20 @@ interface Order {
 }
 
 export default function OrdersPage() {
-  const { user } = useAuthStore();
+  const { isHydrated, isAuthenticated } = useAuthHydration();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
+    if (!isHydrated) return;
+
+    if (!isAuthenticated) {
       router.push('/login');
       return;
     }
     fetchOrders();
-  }, [user]);
+  }, [isHydrated, isAuthenticated, router]);
 
   const fetchOrders = async () => {
     try {

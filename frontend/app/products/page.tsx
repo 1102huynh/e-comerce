@@ -34,7 +34,7 @@ export default function ProductsPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [pageSize] = useState(12); // Products per page
+  const [pageSize] = useState(10); // Products per page
   const searchTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {

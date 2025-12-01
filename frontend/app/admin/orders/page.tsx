@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
-import { useThemeStore } from '@/store/themeStore';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -43,7 +42,7 @@ export default function AdminOrdersPage() {
       return;
     }
     fetchOrders();
-  }, [user]);
+  }, [user, isAdmin, router]);
 
   const fetchOrders = async () => {
     try {
@@ -107,6 +106,12 @@ export default function AdminOrdersPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
+        <button
+          onClick={() => router.push('/admin')}
+          className="mb-6 flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors font-semibold"
+        >
+          ← Back to Dashboard
+        </button>
         <div className="text-center mb-12">
           <div className="text-6xl mb-4 inline-block">📋</div>
           <h1

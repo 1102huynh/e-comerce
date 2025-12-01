@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuthStore } from '@/store/authStore';
-import { useThemeStore } from '@/store/themeStore';
 
 export default function AdminPage() {
   const { user, isAdmin } = useAuthStore();
@@ -215,78 +214,215 @@ export default function AdminPage() {
         </div>
 
         {/* Welcome Stats Section */}
-        <div className="mt-12 bg-gradient-to-br from-gray-900 to-gray-900/80 rounded-2xl border border-gray-800 p-8 hover:border-gray-700 transition-colors">
-          <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3">
+        <div
+          className="mt-12 rounded-2xl border p-8 transition-colors"
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            borderColor: 'var(--card-border)',
+          }}
+        >
+          <h3
+            className="text-2xl font-black mb-6 flex items-center gap-3"
+            style={{ color: 'var(--foreground)' }}
+          >
             <span className="text-3xl">👋</span>
             Welcome, {user?.fullName || 'Admin'}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Total Products */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-colors group overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
+            <div
+              className="relative rounded-xl p-6 border transition-colors group overflow-hidden"
+              style={{
+                backgroundColor: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 w-20 h-20 rounded-full blur-2xl transition-colors"
+                style={{
+                  backgroundColor: 'var(--foreground)',
+                  opacity: 0.05,
+                }}
+              ></div>
               <div className="relative z-10">
-                <div className="text-4xl font-black text-white mb-2">📦</div>
-                <div className="text-4xl font-black text-white mb-2">12+</div>
-                <div className="text-sm text-gray-400 font-semibold">Total Products</div>
+                <div className="text-4xl font-black mb-2">📦</div>
+                <div
+                  className="text-4xl font-black mb-2"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  12+
+                </div>
+                <div
+                  className="text-sm font-semibold"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.6,
+                  }}
+                >
+                  Total Products
+                </div>
               </div>
             </div>
 
             {/* Total Orders */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-colors group overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
+            <div
+              className="relative rounded-xl p-6 border transition-colors group overflow-hidden"
+              style={{
+                backgroundColor: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 w-20 h-20 rounded-full blur-2xl transition-colors"
+                style={{
+                  backgroundColor: 'var(--foreground)',
+                  opacity: 0.05,
+                }}
+              ></div>
               <div className="relative z-10">
-                <div className="text-4xl font-black text-white mb-2">📊</div>
-                <div className="text-4xl font-black text-white mb-2">0</div>
-                <div className="text-sm text-gray-400 font-semibold">Total Orders</div>
+                <div className="text-4xl font-black mb-2">📊</div>
+                <div
+                  className="text-4xl font-black mb-2"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  0
+                </div>
+                <div
+                  className="text-sm font-semibold"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.6,
+                  }}
+                >
+                  Total Orders
+                </div>
               </div>
             </div>
 
             {/* Categories */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-colors group overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
+            <div
+              className="relative rounded-xl p-6 border transition-colors group overflow-hidden"
+              style={{
+                backgroundColor: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 w-20 h-20 rounded-full blur-2xl transition-colors"
+                style={{
+                  backgroundColor: 'var(--foreground)',
+                  opacity: 0.05,
+                }}
+              ></div>
               <div className="relative z-10">
-                <div className="text-4xl font-black text-white mb-2">🏷️</div>
-                <div className="text-4xl font-black text-white mb-2">6</div>
-                <div className="text-sm text-gray-400 font-semibold">Categories</div>
+                <div className="text-4xl font-black mb-2">🏷️</div>
+                <div
+                  className="text-4xl font-black mb-2"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  6
+                </div>
+                <div
+                  className="text-sm font-semibold"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.6,
+                  }}
+                >
+                  Categories
+                </div>
               </div>
             </div>
 
             {/* Pending Orders */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-gray-600 transition-colors group overflow-hidden">
-              <div className="absolute top-0 right-0 w-20 h-20 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-colors"></div>
+            <div
+              className="relative rounded-xl p-6 border transition-colors group overflow-hidden"
+              style={{
+                backgroundColor: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+              }}
+            >
+              <div
+                className="absolute top-0 right-0 w-20 h-20 rounded-full blur-2xl transition-colors"
+                style={{
+                  backgroundColor: 'var(--foreground)',
+                  opacity: 0.05,
+                }}
+              ></div>
               <div className="relative z-10">
-                <div className="text-4xl font-black text-white mb-2">⏳</div>
-                <div className="text-4xl font-black text-white mb-2">0</div>
-                <div className="text-sm text-gray-400 font-semibold">Pending Orders</div>
+                <div className="text-4xl font-black mb-2">⏳</div>
+                <div
+                  className="text-4xl font-black mb-2"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  0
+                </div>
+                <div
+                  className="text-sm font-semibold"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.6,
+                  }}
+                >
+                  Pending Orders
+                </div>
               </div>
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="mt-8 pt-8 border-t border-gray-700">
-            <h4 className="text-lg font-black text-white mb-4">⚡ Quick Actions</h4>
+          <div
+            className="mt-8 pt-8 border-t"
+            style={{ borderTopColor: 'var(--card-border)' }}
+          >
+            <h4
+              className="text-lg font-black mb-4"
+              style={{ color: 'var(--foreground)' }}
+            >
+              ⚡ Quick Actions
+            </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Link
                 href="/admin/products"
-                className="p-4 bg-gray-800/50 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg text-white font-semibold transition-all transform hover:scale-105 text-center"
+                style={{
+                  backgroundColor: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--foreground)',
+                }}
+                className="p-4 border rounded-lg font-semibold transition-all transform hover:scale-105 text-center"
               >
                 ➕ Add Product
               </Link>
               <Link
                 href="/admin/categories"
-                className="p-4 bg-gray-800/50 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg text-white font-semibold transition-all transform hover:scale-105 text-center"
+                style={{
+                  backgroundColor: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--foreground)',
+                }}
+                className="p-4 border rounded-lg font-semibold transition-all transform hover:scale-105 text-center"
               >
                 ➕ Add Category
               </Link>
               <Link
                 href="/admin/orders"
-                className="p-4 bg-gray-800/50 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg text-white font-semibold transition-all transform hover:scale-105 text-center"
+                style={{
+                  backgroundColor: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--foreground)',
+                }}
+                className="p-4 border rounded-lg font-semibold transition-all transform hover:scale-105 text-center"
               >
                 👁️ View Orders
               </Link>
               <button
                 onClick={() => window.location.href = '/'}
-                className="p-4 bg-gray-800/50 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg text-white font-semibold transition-all transform hover:scale-105 text-center"
+                style={{
+                  backgroundColor: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--foreground)',
+                }}
+                className="p-4 border rounded-lg font-semibold transition-all transform hover:scale-105 text-center"
               >
                 🏠 View Store
               </button>

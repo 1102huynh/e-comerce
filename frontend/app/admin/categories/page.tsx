@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as apiModule from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
+import { useAuthHydration } from '@/hooks/useAuthHydration';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -15,7 +15,7 @@ interface Category {
 }
 
 export default function AdminCategoriesPage() {
-  const { user, isAdmin } = useAuthStore();
+  const { isHydrated, user, isAdmin } = useAuthHydration();
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -23,14 +23,6 @@ export default function AdminCategoriesPage() {
     name: '',
     description: '',
   });
-
-  useEffect(() => {
-    if (!user || !isAdmin()) {
-      router.push('/');
-      return;
-    }
-    fetchCategories();
-  }, [user]);
 
   const fetchCategories = async () => {
     try {
@@ -40,6 +32,16 @@ export default function AdminCategoriesPage() {
       toast.error('Failed to fetch categories');
     }
   };
+
+  useEffect(() => {
+    if (!isHydrated) return;
+
+    if (!user || !isAdmin()) {
+      router.push('/');
+      return;
+    }
+    fetchCategories();
+  }, [isHydrated, user, isAdmin, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,6 +103,12 @@ export default function AdminCategoriesPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
+        <button
+          onClick={() => router.push('/admin')}
+          className="mb-6 flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-lg transition-colors font-semibold"
+        >
+          ← Back to Dashboard
+        </button>
         <div className="mb-12">
           <div className="text-center md:text-left">
             <div className="text-6xl mb-3 inline-block">🏷️</div>

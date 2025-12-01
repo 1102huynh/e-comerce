@@ -5,7 +5,7 @@ import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '@/store/cartStore';
 import { useThemeStore } from '@/store/themeStore';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
   const { user, logout } = useAuthStore();
@@ -13,6 +13,12 @@ export default function Navbar() {
   const { theme, toggleTheme } = useThemeStore();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setIsHydrated(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -49,7 +55,19 @@ export default function Navbar() {
               🛍️ Shop
             </Link>
 
-            {user ? (
+            {!isHydrated ? (
+              <>
+                <Link href="/login" className="hover:text-gray-300 font-semibold transition-colors px-3 py-2 rounded-lg hover:bg-gray-800/50">
+                  🔓 Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-full font-bold transition-all shadow-lg transform hover:scale-105"
+                >
+                  ✨ Register
+                </Link>
+              </>
+            ) : user ? (
               <>
                 <Link
                   href="/cart"

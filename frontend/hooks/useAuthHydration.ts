@@ -9,6 +9,7 @@ export function useAuthHydration() {
   const [isHydrated, setIsHydrated] = useState(false);
   const user = useAuthStore((state) => state.user);
   const token = useAuthStore((state) => state.token);
+  const isAdmin = useAuthStore((state) => state.isAdmin);
 
   useEffect(() => {
     // Log khởi tạo
@@ -26,6 +27,7 @@ export function useAuthHydration() {
     }, 100);
 
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {
@@ -33,6 +35,7 @@ export function useAuthHydration() {
     user,
     token,
     isAuthenticated: !!user && !!token,
+    isAdmin,
   };
 }
 

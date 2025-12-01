@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import * as apiModule from '@/lib/api';
-import { useAuthStore } from '@/store/authStore';
 import { useCartStore } from '@/store/cartStore';
+import { useAuthHydration } from '@/hooks/useAuthHydration';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -27,19 +27,21 @@ interface Cart {
 }
 
 export default function CartPage() {
-  const { user } = useAuthStore();
+  const { isHydrated, isAuthenticated } = useAuthHydration();
   const { setCart } = useCartStore();
   const router = useRouter();
   const [cart, setLocalCart] = useState<Cart | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user) {
+    if (!isHydrated) return;
+
+    if (!isAuthenticated) {
       router.push('/login');
       return;
     }
     fetchCart();
-  }, [user]);
+  }, [isHydrated, isAuthenticated]);
 
   const fetchCart = async () => {
     try {

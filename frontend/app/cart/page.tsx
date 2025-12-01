@@ -84,22 +84,51 @@ export default function CartPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading your cart...</div>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{
+          backgroundColor: 'var(--background)',
+        }}
+      >
+        <div style={{ color: 'var(--foreground)' }} className="text-xl">
+          Loading your cart...
+        </div>
       </div>
     );
   }
 
   if (!cart || cart.items.length === 0) {
     return (
-      <div className="min-h-screen bg-black">
+      <div
+        className="min-h-screen"
+        style={{
+          backgroundColor: 'var(--background)',
+        }}
+      >
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="text-6xl mb-6">🛒</div>
-          <h1 className="text-4xl font-black text-white mb-4">Your Cart is Empty</h1>
-          <p className="text-gray-400 mb-8">Start adding some awesome products!</p>
+          <h1
+            className="text-4xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Your Cart is Empty
+          </h1>
+          <p
+            className="mb-8"
+            style={{
+              color: 'var(--foreground)',
+              opacity: 0.6,
+            }}
+          >
+            Start adding some awesome products!
+          </p>
           <button
             onClick={() => router.push('/products')}
-            className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-all transform hover:scale-105"
+            style={{
+              backgroundColor: 'var(--nav-bg)',
+              color: 'var(--nav-text)',
+            }}
+            className="px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105"
           >
             Continue Shopping
           </button>
@@ -109,12 +138,28 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div
+      style={{
+        backgroundColor: 'var(--background)',
+      }}
+      className="min-h-screen"
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="mb-12 text-center">
           <div className="text-6xl mb-4 animate-bounce inline-block">🛒</div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4">Shopping Cart</h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto"></div>
+          <h1
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Shopping Cart
+          </h1>
+          <div
+            className="w-24 h-1 mx-auto"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.2,
+            }}
+          ></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -123,10 +168,14 @@ export default function CartPage() {
             {cart.items.map((item, index) => (
               <div
                 key={item.id}
-                className="bg-gradient-to-br from-gray-900 to-gray-900/50 border border-gray-800 rounded-2xl p-6 flex gap-6 hover:border-gray-600 hover:shadow-xl hover:shadow-white/5 transition-all duration-300 hover:-translate-y-1"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="border rounded-2xl p-6 flex gap-6 transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  borderColor: 'var(--card-border)',
+                  animationDelay: `${index * 100}ms`,
+                }}
               >
-                <div className="relative w-32 h-32 flex-shrink-0 rounded-xl overflow-hidden bg-gray-800">
+                <div className="relative w-32 h-32 flex-shrink-0 rounded-xl overflow-hidden">
                   <Image
                     src={item.product.imageUrl}
                     alt={item.product.name}
@@ -135,12 +184,28 @@ export default function CartPage() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-xl text-white mb-2">{item.product.name}</h3>
-                  <p className="text-white font-black text-2xl mb-4">
+                  <h3
+                    className="font-bold text-xl mb-2"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    {item.product.name}
+                  </h3>
+                  <p
+                    className="font-black text-2xl mb-4"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     ${item.product.price.toFixed(2)}
                   </p>
                   <div className="flex items-center gap-4">
-                    <label className="text-gray-400 text-sm font-semibold">Quantity:</label>
+                    <label
+                      className="text-sm font-semibold"
+                      style={{
+                        color: 'var(--foreground)',
+                        opacity: 0.6,
+                      }}
+                    >
+                      Quantity:
+                    </label>
                     <input
                       type="number"
                       min="1"
@@ -148,7 +213,12 @@ export default function CartPage() {
                       onChange={(e) =>
                         updateQuantity(item.id, parseInt(e.target.value))
                       }
-                      className="w-20 px-3 py-2 bg-gray-800 border border-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+                      style={{
+                        backgroundColor: 'var(--input-bg)',
+                        borderColor: 'var(--input-border)',
+                        color: 'var(--foreground)',
+                      }}
+                      className="w-20 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2"
                     />
                     <button
                       onClick={() => removeItem(item.id)}

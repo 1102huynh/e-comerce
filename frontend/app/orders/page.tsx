@@ -68,22 +68,44 @@ export default function OrdersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading your orders...</div>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
+        <div style={{ color: 'var(--foreground)' }} className="text-xl">
+          Loading your orders...
+        </div>
       </div>
     );
   }
 
   if (orders.length === 0) {
     return (
-      <div className="min-h-screen bg-black">
+      <div style={{ backgroundColor: 'var(--background)' }} className="min-h-screen">
         <div className="container mx-auto px-4 py-16 text-center">
           <div className="text-6xl mb-6">📦</div>
-          <h1 className="text-4xl font-black text-white mb-4">No Orders Yet</h1>
-          <p className="text-gray-400 mb-8">Start shopping and place your first order!</p>
+          <h1
+            className="text-4xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            No Orders Yet
+          </h1>
+          <p
+            className="mb-8"
+            style={{
+              color: 'var(--foreground)',
+              opacity: 0.6,
+            }}
+          >
+            Start shopping and place your first order!
+          </p>
           <button
             onClick={() => router.push('/products')}
-            className="bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition-all transform hover:scale-105"
+            style={{
+              backgroundColor: 'var(--nav-bg)',
+              color: 'var(--nav-text)',
+            }}
+            className="px-8 py-4 rounded-full font-bold transition-all transform hover:scale-105"
           >
             Start Shopping
           </button>
@@ -93,40 +115,128 @@ export default function OrdersPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div style={{ backgroundColor: 'var(--background)' }} className="min-h-screen">
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-12 text-center">
           <div className="text-6xl mb-4 inline-block animate-bounce">📦</div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4">My Orders</h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-4"></div>
-          <p className="text-gray-400">Track and manage all your purchases</p>
+          <h1
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            My Orders
+          </h1>
+          <div
+            className="w-24 h-1 mx-auto mb-4"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.2,
+            }}
+          ></div>
+          <p
+            style={{
+              color: 'var(--foreground)',
+              opacity: 0.6,
+            }}
+          >
+            Track and manage all your purchases
+          </p>
         </div>
 
         {/* Order Statistics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors">
+          <div
+            className="border rounded-xl p-6 hover:transition-colors"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
             <div className="text-3xl mb-2">📋</div>
-            <div className="text-3xl font-black text-white mb-1">{orders.length}</div>
-            <div className="text-sm text-gray-400">Total Orders</div>
+            <div
+              className="text-3xl font-black mb-1"
+              style={{ color: 'var(--foreground)' }}
+            >
+              {orders.length}
+            </div>
+            <div
+              className="text-sm"
+              style={{
+                color: 'var(--foreground)',
+                opacity: 0.6,
+              }}
+            >
+              Total Orders
+            </div>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors">
+          <div
+            className="border rounded-xl p-6 hover:transition-colors"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
             <div className="text-3xl mb-2">✅</div>
-            <div className="text-3xl font-black text-green-400 mb-1">{orders.filter(o => o.status === 'DELIVERED').length}</div>
-            <div className="text-sm text-gray-400">Delivered</div>
+            <div className="text-3xl font-black text-green-400 mb-1">
+              {orders.filter(o => o.status === 'DELIVERED').length}
+            </div>
+            <div
+              className="text-sm"
+              style={{
+                color: 'var(--foreground)',
+                opacity: 0.6,
+              }}
+            >
+              Delivered
+            </div>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors">
+          <div
+            className="border rounded-xl p-6 hover:transition-colors"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
             <div className="text-3xl mb-2">⏳</div>
-            <div className="text-3xl font-black text-blue-400 mb-1">{orders.filter(o => ['PENDING', 'PROCESSING', 'SHIPPED'].includes(o.status)).length}</div>
-            <div className="text-sm text-gray-400">In Progress</div>
+            <div className="text-3xl font-black text-blue-400 mb-1">
+              {orders.filter(o => ['PENDING', 'PROCESSING', 'SHIPPED'].includes(o.status)).length}
+            </div>
+            <div
+              className="text-sm"
+              style={{
+                color: 'var(--foreground)',
+                opacity: 0.6,
+              }}
+            >
+              In Progress
+            </div>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors">
+          <div
+            className="border rounded-xl p-6 hover:transition-colors"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
             <div className="text-3xl mb-2">💰</div>
-            <div className="text-3xl font-black text-white mb-1">${orders.reduce((sum, o) => sum + o.totalAmount, 0).toFixed(2)}</div>
-            <div className="text-sm text-gray-400">Total Spent</div>
+            <div
+              className="text-3xl font-black mb-1"
+              style={{ color: 'var(--foreground)' }}
+            >
+              ${orders.reduce((sum, o) => sum + o.totalAmount, 0).toFixed(2)}
+            </div>
+            <div
+              className="text-sm"
+              style={{
+                color: 'var(--foreground)',
+                opacity: 0.6,
+              }}
+            >
+              Total Spent
+            </div>
           </div>
         </div>
 
@@ -135,27 +245,61 @@ export default function OrdersPage() {
           {orders.map((order, index) => (
             <div
               key={order.id}
-              className="relative bg-gradient-to-br from-gray-900 to-gray-900/80 border-2 border-gray-800 rounded-2xl p-8 hover:border-gray-700 hover:shadow-2xl hover:shadow-white/10 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className="relative border-2 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+                animationDelay: `${index * 50}ms`,
+              }}
             >
               {/* Decorative corner accents */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-white/5 to-transparent rounded-tr-full"></div>
+              <div
+                className="absolute top-0 right-0 w-32 h-32 rounded-bl-full"
+                style={{
+                  background: 'var(--foreground)',
+                  opacity: 0.05,
+                }}
+              ></div>
+              <div
+                className="absolute bottom-0 left-0 w-24 h-24 rounded-tr-full"
+                style={{
+                  background: 'var(--foreground)',
+                  opacity: 0.03,
+                }}
+              ></div>
 
               <div className="relative z-10">
                 {/* Order Header - Top Section */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 pb-6 border-b border-gray-700">
+                <div
+                  className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8 pb-6 border-b"
+                  style={{ borderBottomColor: 'var(--card-border)' }}
+                >
                   <div>
-                    <h3 className="text-3xl font-black text-white mb-2">Order #{order.id}</h3>
+                    <h3
+                      className="text-3xl font-black mb-2"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      Order #{order.id}
+                    </h3>
                     <div className="flex flex-col sm:flex-row gap-4 text-sm">
-                      <span className="text-gray-400">
+                      <span
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
                         📅 {new Date(order.createdAt).toLocaleDateString('en-US', {
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
                         })}
                       </span>
-                      <span className="text-gray-400">
+                      <span
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
                         🕐 {new Date(order.createdAt).toLocaleTimeString('en-US', {
                           hour: '2-digit',
                           minute: '2-digit'
@@ -177,19 +321,55 @@ export default function OrdersPage() {
 
                 {/* Order Items Grid */}
                 <div className="mb-8">
-                  <h4 className="font-black text-white mb-4 text-lg flex items-center gap-2">
+                  <h4
+                    className="font-black mb-4 text-lg flex items-center gap-2"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     <span>📦</span> Order Items ({order.items.length})
                   </h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                     {order.items.map((item) => (
-                      <div key={item.id} className="flex justify-between items-center p-4 bg-gray-800/50 border border-gray-700 rounded-xl hover:border-gray-600 transition-colors">
+                      <div
+                        key={item.id}
+                        className="flex justify-between items-center p-4 border rounded-xl transition-colors"
+                        style={{
+                          backgroundColor: 'var(--input-bg)',
+                          borderColor: 'var(--input-border)',
+                        }}
+                      >
                         <div className="flex-1">
-                          <p className="text-white font-bold">{item.product.name}</p>
-                          <p className="text-gray-400 text-sm">Qty: {item.quantity}</p>
+                          <p
+                            className="font-bold"
+                            style={{ color: 'var(--foreground)' }}
+                          >
+                            {item.product.name}
+                          </p>
+                          <p
+                            className="text-sm"
+                            style={{
+                              color: 'var(--foreground)',
+                              opacity: 0.6,
+                            }}
+                          >
+                            Qty: {item.quantity}
+                          </p>
                         </div>
                         <div className="text-right">
-                          <p className="text-white font-black text-lg">${(item.price * item.quantity).toFixed(2)}</p>
-                          <p className="text-gray-400 text-xs">${item.price.toFixed(2)} each</p>
+                          <p
+                            className="font-black text-lg"
+                            style={{ color: 'var(--foreground)' }}
+                          >
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </p>
+                          <p
+                            className="text-xs"
+                            style={{
+                              color: 'var(--foreground)',
+                              opacity: 0.6,
+                            }}
+                          >
+                            ${item.price.toFixed(2)} each
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -197,43 +377,121 @@ export default function OrdersPage() {
                 </div>
 
                 {/* Order Summary Section */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pb-8 border-b border-gray-700">
+                <div
+                  className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 pb-8 border-b"
+                  style={{ borderBottomColor: 'var(--card-border)' }}
+                >
                   {/* Pricing Details */}
-                  <div className="space-y-3 bg-gray-800/30 p-6 rounded-xl border border-gray-700">
-                    <h5 className="font-black text-white mb-4 flex items-center gap-2">
+                  <div
+                    className="space-y-3 p-6 rounded-xl border"
+                    style={{
+                      backgroundColor: 'var(--input-bg)',
+                      borderColor: 'var(--input-border)',
+                    }}
+                  >
+                    <h5
+                      className="font-black mb-4 flex items-center gap-2"
+                      style={{ color: 'var(--foreground)' }}
+                    >
                       <span>💰</span> Price Details
                     </h5>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Subtotal:</span>
-                      <span className="text-white font-bold">${(order.totalAmount * 0.9).toFixed(2)}</span>
+                      <span
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
+                        Subtotal:
+                      </span>
+                      <span
+                        className="font-bold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        ${(order.totalAmount * 0.9).toFixed(2)}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-gray-400">Tax (10%):</span>
-                      <span className="text-white font-bold">${(order.totalAmount * 0.1).toFixed(2)}</span>
+                      <span
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
+                        Tax (10%):
+                      </span>
+                      <span
+                        className="font-bold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        ${(order.totalAmount * 0.1).toFixed(2)}
+                      </span>
                     </div>
-                    <div className="flex justify-between text-sm border-t border-gray-600 pt-3">
-                      <span className="text-white font-black">Total Amount:</span>
-                      <span className="text-white font-black text-lg">${order.totalAmount.toFixed(2)}</span>
+                    <div
+                      className="flex justify-between text-sm border-t pt-3"
+                      style={{ borderTopColor: 'var(--card-border)' }}
+                    >
+                      <span
+                        className="font-black"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        Total Amount:
+                      </span>
+                      <span
+                        className="font-black text-lg"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        ${order.totalAmount.toFixed(2)}
+                      </span>
                     </div>
                   </div>
 
                   {/* Payment & Region Info */}
-                  <div className="space-y-3 bg-gray-800/30 p-6 rounded-xl border border-gray-700">
-                    <h5 className="font-black text-white mb-4 flex items-center gap-2">
+                  <div
+                    className="space-y-3 p-6 rounded-xl border"
+                    style={{
+                      backgroundColor: 'var(--input-bg)',
+                      borderColor: 'var(--input-border)',
+                    }}
+                  >
+                    <h5
+                      className="font-black mb-4 flex items-center gap-2"
+                      style={{ color: 'var(--foreground)' }}
+                    >
                       <span>ℹ️</span> Order Info
                     </h5>
                     {order.region && (
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Region:</span>
-                        <span className="text-white font-bold">
+                        <span
+                          style={{
+                            color: 'var(--foreground)',
+                            opacity: 0.6,
+                          }}
+                        >
+                          Region:
+                        </span>
+                        <span
+                          className="font-bold"
+                          style={{ color: 'var(--foreground)' }}
+                        >
                           {order.region === 'vietnam' ? '🇻🇳 Vietnam' : '🇪🇺 Europe'}
                         </span>
                       </div>
                     )}
                     {order.paymentMethod && (
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Payment:</span>
-                        <span className="text-white font-bold">
+                        <span
+                          style={{
+                            color: 'var(--foreground)',
+                            opacity: 0.6,
+                          }}
+                        >
+                          Payment:
+                        </span>
+                        <span
+                          className="font-bold"
+                          style={{ color: 'var(--foreground)' }}
+                        >
                           {order.paymentMethod === 'cod' && '💵 COD'}
                           {order.paymentMethod === 'momo' && '📱 Momo'}
                           {order.paymentMethod === 'bank' && '🏦 Bank Transfer'}
@@ -242,9 +500,23 @@ export default function OrdersPage() {
                         </span>
                       </div>
                     )}
-                    <div className="border-t border-gray-600 pt-3">
-                      <p className="text-xs text-gray-400 mb-2">Invoice Status:</p>
-                      <p className="text-white font-bold flex items-center gap-2">
+                    <div
+                      className="border-t pt-3"
+                      style={{ borderTopColor: 'var(--card-border)' }}
+                    >
+                      <p
+                        className="text-xs mb-2"
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
+                        Invoice Status:
+                      </p>
+                      <p
+                        className="font-bold flex items-center gap-2"
+                        style={{ color: 'var(--foreground)' }}
+                      >
                         <span>✉️</span> Invoice sent to email
                       </p>
                     </div>
@@ -252,18 +524,53 @@ export default function OrdersPage() {
                 </div>
 
                 {/* Shipping Information */}
-                <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6">
-                  <h5 className="font-black text-white mb-4 flex items-center gap-2">
+                <div
+                  className="rounded-xl p-6 border"
+                  style={{
+                    backgroundColor: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                  }}
+                >
+                  <h5
+                    className="font-black mb-4 flex items-center gap-2"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     <span>📍</span> Shipping Details
                   </h5>
                   <div className="space-y-3">
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">Delivery Address:</p>
-                      <p className="text-white font-semibold">{order.shippingAddress}</p>
+                      <p
+                        className="text-sm mb-1"
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
+                        Delivery Address:
+                      </p>
+                      <p
+                        className="font-semibold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        {order.shippingAddress}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-gray-400 text-sm mb-1">Contact Number:</p>
-                      <p className="text-white font-semibold">{order.phone}</p>
+                      <p
+                        className="text-sm mb-1"
+                        style={{
+                          color: 'var(--foreground)',
+                          opacity: 0.6,
+                        }}
+                      >
+                        Contact Number:
+                      </p>
+                      <p
+                        className="font-semibold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        {order.phone}
+                      </p>
                     </div>
                   </div>
                 </div>

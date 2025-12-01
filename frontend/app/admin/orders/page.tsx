@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import * as apiModule from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
+import { useThemeStore } from '@/store/themeStore';
 import { toast } from '@/lib/toast';
 
 const api = apiModule.default;
@@ -78,38 +79,85 @@ export default function AdminOrdersPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading orders...</div>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
+        <div style={{ color: 'var(--foreground)' }} className="text-xl">
+          Loading orders...
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{ backgroundColor: 'var(--background)' }}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div
+          className="absolute bottom-0 left-1/3 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="text-center mb-12">
           <div className="text-6xl mb-4 inline-block">📋</div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-3">Manage Orders</h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto"></div>
+          <h1
+            className="text-5xl md:text-6xl font-black mb-3"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Manage Orders
+          </h1>
+          <div
+            className="w-24 h-1 mx-auto"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.2,
+            }}
+          ></div>
         </div>
 
         <div className="space-y-8">
           {orders.map((order) => (
-            <div key={order.id} className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-800">
+            <div
+              key={order.id}
+              className="backdrop-blur-sm rounded-2xl p-8 border"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+              }}
+            >
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3
+                    className="text-2xl font-bold mb-2"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     Order #{order.id}
                   </h3>
-                  <p className="text-sm text-gray-400">
+                  <p
+                    className="text-sm"
+                    style={{
+                      color: 'var(--foreground)',
+                      opacity: 0.6,
+                    }}
+                  >
                     👤 Customer: {order.user.fullName} ({order.user.email})
                   </p>
-                  <p className="text-sm text-gray-400">
+                  <p
+                    className="text-sm"
+                    style={{
+                      color: 'var(--foreground)',
+                      opacity: 0.6,
+                    }}
+                  >
                     📅 Date: {new Date(order.createdAt).toLocaleString()}
                   </p>
                 </div>

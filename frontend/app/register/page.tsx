@@ -46,28 +46,80 @@ export default function RegisterPage() {
   const isFormValid = formData.email && formData.password && formData.fullName && formData.password.length >= 6;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black py-12 px-4 relative overflow-hidden">
+    <div
+      className="min-h-screen flex items-center justify-center py-12 px-4 relative overflow-hidden"
+      style={{
+        backgroundColor: 'var(--background)',
+        transition: 'background-color 0.3s ease',
+      }}
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+        <div
+          className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
+        <div
+          className="absolute bottom-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse animation-delay-2000"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
       </div>
 
-      <div className="max-w-md w-full bg-gradient-to-br from-gray-900 to-gray-900/80 rounded-2xl shadow-2xl border border-gray-800 p-8 relative z-10 hover:border-gray-700 transition-colors">
+      <div
+        className="max-w-md w-full rounded-2xl shadow-2xl p-8 relative z-10 hover:transition-colors border"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          borderColor: 'var(--card-border)',
+        }}
+      >
         {/* Decorative corner */}
-        <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-br-full"></div>
+        <div
+          className="absolute top-0 left-0 w-32 h-32 rounded-br-full"
+          style={{
+            background: 'linear-gradient(to bottom right, var(--foreground), transparent)',
+            opacity: 0.05,
+          }}
+        ></div>
 
         <div className="text-center mb-8 relative z-10">
           <div className="text-6xl mb-4 inline-block animate-float">🧢</div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-3">Join HatShop</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-3"></div>
-          <p className="text-gray-400 text-sm">Create your account to get started</p>
+          <h2
+            className="text-4xl md:text-5xl font-black mb-3"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Join HatShop
+          </h2>
+          <div
+            className="w-20 h-1 mx-auto mb-3"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.2,
+            }}
+          ></div>
+          <p
+            className="text-sm"
+            style={{
+              color: 'var(--foreground)',
+              opacity: 0.6,
+            }}
+          >
+            Create your account to get started
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
           {/* Email Field */}
           <div>
-            <label className="block text-sm font-bold text-white mb-2">
+            <label
+              className="block text-sm font-bold mb-2"
+              style={{ color: 'var(--foreground)' }}
+            >
               📧 Email Address <span className="text-red-400">*</span>
             </label>
             <input
@@ -76,7 +128,12 @@ export default function RegisterPage() {
               required
               value={formData.email}
               onChange={handleChange}
-              className="block w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all hover:border-gray-600"
+              style={{
+                backgroundColor: 'var(--input-bg)',
+                borderColor: 'var(--input-border)',
+                color: 'var(--foreground)',
+              }}
+              className="block w-full px-4 py-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:border-transparent placeholder-opacity-50 transition-all hover:opacity-90"
               placeholder="your@email.com"
             />
           </div>

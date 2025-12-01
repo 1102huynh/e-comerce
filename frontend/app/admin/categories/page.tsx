@@ -85,18 +85,38 @@ export default function AdminCategoriesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{ backgroundColor: 'var(--background)' }}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div
+          className="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="mb-12">
           <div className="text-center md:text-left">
             <div className="text-6xl mb-3 inline-block">🏷️</div>
-            <h1 className="text-5xl md:text-6xl font-black text-white">Manage Categories</h1>
-            <div className="w-20 h-1 bg-gradient-to-r from-white to-transparent mt-3"></div>
+            <h1
+              className="text-5xl md:text-6xl font-black"
+              style={{ color: 'var(--foreground)' }}
+            >
+              Manage Categories
+            </h1>
+            <div
+              className="w-20 h-1 mt-3"
+              style={{
+                background: 'var(--foreground)',
+                opacity: 0.3,
+              }}
+            ></div>
           </div>
         </div>
 

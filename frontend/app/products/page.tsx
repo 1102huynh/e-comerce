@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import api from '@/lib/api';
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
+import { useThemeStore } from '@/store/themeStore';
 
 interface Product {
   id: number;
@@ -24,6 +25,8 @@ interface Category {
 }
 
 export default function ProductsPage() {
+  const theme = useThemeStore((state) => state.theme);
+  const isDark = theme === 'dark';
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
@@ -151,14 +154,46 @@ export default function ProductsPage() {
   const totalPages = Math.ceil(totalProducts / pageSize);
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden">
+    <div
+      className="min-h-screen overflow-x-hidden"
+      style={{
+        backgroundColor: 'var(--background)',
+        transition: 'background-color 0.3s ease',
+      }}
+    >
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-gray-950 via-black to-gray-950 text-white py-20 border-b border-gray-800 overflow-hidden">
+      <div
+        className="relative text-white py-20 overflow-hidden border-b"
+        style={{
+          backgroundColor: 'var(--card-bg)',
+          borderBottomColor: 'var(--card-border)',
+          backgroundImage: isDark
+            ? 'linear-gradient(to bottom right, #111827, #0a0a0a)'
+            : 'linear-gradient(to bottom right, #f3f4f6, #e5e7eb)',
+        }}
+      >
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-1/4 w-80 h-80 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-3xl opacity-50"></div>
-          <div className="absolute bottom-10 right-1/3 w-96 h-96 bg-gradient-to-tl from-white/10 to-transparent rounded-full blur-3xl opacity-50"></div>
-          <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-gradient-to-br from-white/5 to-transparent rounded-full blur-2xl opacity-30 animate-pulse"></div>
+          <div
+            className="absolute top-20 left-1/4 w-80 h-80 rounded-full blur-3xl opacity-50"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.1,
+            }}
+          ></div>
+          <div
+            className="absolute bottom-10 right-1/3 w-96 h-96 rounded-full blur-3xl opacity-50"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.1,
+            }}
+          ></div>
+          <div
+            className="absolute top-1/2 left-1/2 w-72 h-72 rounded-full blur-2xl opacity-30 animate-pulse"
+            style={{
+              background: 'var(--foreground)',
+            }}
+          ></div>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -168,16 +203,45 @@ export default function ProductsPage() {
               <div className="text-7xl md:text-8xl animate-bounce">🧢</div>
             </div>
             <div>
-              <h1 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent mb-4">
+              <h1
+                className="text-6xl md:text-7xl font-black mb-4"
+                style={{ color: 'var(--foreground)' }}
+              >
                 Premium Collection
               </h1>
               <div className="flex items-center justify-center gap-4 mb-6">
-                <div className="h-1 w-16 bg-gradient-to-r from-white/30 to-transparent"></div>
-                <p className="text-lg text-gray-300 font-semibold">Curated for Style</p>
-                <div className="h-1 w-16 bg-gradient-to-l from-white/30 to-transparent"></div>
+                <div
+                  className="h-1 w-16"
+                  style={{
+                    background: 'var(--foreground)',
+                    opacity: 0.2,
+                  }}
+                ></div>
+                <p
+                  className="text-lg font-semibold"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
+                  Curated for Style
+                </p>
+                <div
+                  className="h-1 w-16"
+                  style={{
+                    background: 'var(--foreground)',
+                    opacity: 0.2,
+                  }}
+                ></div>
               </div>
             </div>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
+            <p
+              className="text-xl max-w-3xl mx-auto leading-relaxed font-light"
+              style={{
+                color: 'var(--foreground)',
+                opacity: 0.6,
+              }}
+            >
               Discover our handpicked collection of premium hats and caps. From classic styles to modern designs, find the perfect hat for every occasion.
             </p>
           </div>
@@ -187,15 +251,34 @@ export default function ProductsPage() {
             {/* Search Input */}
             <div className="flex gap-3 justify-center max-w-2xl mx-auto">
               <div className="relative flex-1">
-                <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <svg
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.5,
+                  }}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
                 </svg>
                 <input
                   type="text"
                   placeholder="Search for hats, styles, brands..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-6 py-4 bg-gray-900/80 backdrop-blur border-2 border-gray-700 text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent shadow-xl text-base placeholder-gray-500 transition-all hover:border-gray-600"
+                  style={{
+                    backgroundColor: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                    color: 'var(--foreground)',
+                  }}
+                  className="w-full pl-12 pr-6 py-4 backdrop-blur border-2 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent shadow-xl text-base placeholder-opacity-50 transition-all hover:opacity-90"
                 />
               </div>
               <button

@@ -1,8 +1,33 @@
 @import "tailwindcss";
 
+/* Light Theme (Default) */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --nav-bg: #ffffff;
+  --nav-border: #e5e7eb;
+  --nav-text: #000000;
+  --nav-hover: #f3f4f6;
+  --card-bg: #f9fafb;
+  --card-border: #e5e7eb;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --button-hover: #f3f4f6;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --nav-bg: #000000;
+  --nav-border: #1f2937;
+  --nav-text: #ffffff;
+  --nav-hover: #1f2937;
+  --card-bg: #111827;
+  --card-border: #374151;
+  --input-bg: #1f2937;
+  --input-border: #4b5563;
+  --button-hover: #374151;
 }
 
 @theme inline {
@@ -12,10 +37,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* System preference fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --nav-bg: #000000;
+    --nav-border: #1f2937;
+    --nav-text: #ffffff;
+    --nav-hover: #1f2937;
+    --card-bg: #111827;
+    --card-border: #374151;
+    --input-bg: #1f2937;
+    --input-border: #4b5563;
+    --button-hover: #374151;
   }
 }
 

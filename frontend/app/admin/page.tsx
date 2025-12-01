@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuthStore } from '@/store/authStore';
+import { useThemeStore } from '@/store/themeStore';
 
 export default function AdminPage() {
   const { user, isAdmin } = useAuthStore();
@@ -25,26 +26,63 @@ export default function AdminPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
+        <div style={{ color: 'var(--foreground)' }} className="text-xl">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{ backgroundColor: 'var(--background)' }}
+    >
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div
+          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
+        <div
+          className="absolute bottom-0 left-0 w-96 h-96 rounded-full blur-3xl"
+          style={{
+            backgroundColor: 'var(--foreground)',
+            opacity: 0.05,
+          }}
+        ></div>
       </div>
 
       <div className="container mx-auto px-4 py-12 relative z-10">
         <div className="mb-12 text-center">
           <div className="text-6xl mb-4 inline-block">⚙️</div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4">Admin Dashboard</h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-4"></div>
-          <p className="text-gray-400 text-lg">Manage your e-commerce platform</p>
+          <h1
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Admin Dashboard
+          </h1>
+          <div
+            className="w-24 h-1 mx-auto mb-4"
+            style={{
+              background: 'var(--foreground)',
+              opacity: 0.2,
+            }}
+          ></div>
+          <p
+            className="text-lg"
+            style={{
+              color: 'var(--foreground)',
+              opacity: 0.6,
+            }}
+          >
+            Manage your e-commerce platform
+          </p>
         </div>
 
         {/* Management Cards Grid */}
@@ -52,14 +90,39 @@ export default function AdminPage() {
           {/* Products Card */}
           <Link
             href="/admin/products"
-            className="group relative bg-gradient-to-br from-gray-900 to-gray-900/80 rounded-2xl border border-gray-800 p-8 hover:border-white/20 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-white/10 overflow-hidden"
+            className="group relative rounded-2xl p-8 hover:-translate-y-3 hover:shadow-2xl overflow-hidden transition-all"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"></div>
+            <div
+              className="absolute inset-0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"
+              style={{
+                background: 'linear-gradient(to bottom right, transparent, transparent)',
+              }}
+            ></div>
             <div className="relative z-10">
               <div className="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">📦</div>
-              <h2 className="text-3xl font-black text-white mb-3">Manage Products</h2>
-              <p className="text-gray-400 leading-relaxed">Add, edit, and delete products from your catalog</p>
-              <div className="mt-6 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+              <h2
+                className="text-3xl font-black mb-3"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Manage Products
+              </h2>
+              <p
+                className="leading-relaxed"
+                style={{
+                  color: 'var(--foreground)',
+                  opacity: 0.6,
+                }}
+              >
+                Add, edit, and delete products from your catalog
+              </p>
+              <div
+                className="mt-6 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2"
+                style={{ color: 'var(--foreground)' }}
+              >
                 Go to Products
                 <span className="group-hover:translate-x-2 transition-transform inline-block">→</span>
               </div>
@@ -69,14 +132,39 @@ export default function AdminPage() {
           {/* Categories Card */}
           <Link
             href="/admin/categories"
-            className="group relative bg-gradient-to-br from-gray-900 to-gray-900/80 rounded-2xl border border-gray-800 p-8 hover:border-white/20 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-white/10 overflow-hidden"
+            className="group relative rounded-2xl p-8 hover:-translate-y-3 hover:shadow-2xl overflow-hidden transition-all"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"></div>
+            <div
+              className="absolute inset-0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"
+              style={{
+                background: 'linear-gradient(to bottom right, transparent, transparent)',
+              }}
+            ></div>
             <div className="relative z-10">
               <div className="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">🏷️</div>
-              <h2 className="text-3xl font-black text-white mb-3">Manage Categories</h2>
-              <p className="text-gray-400 leading-relaxed">Organize your products with categories</p>
-              <div className="mt-6 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+              <h2
+                className="text-3xl font-black mb-3"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Manage Categories
+              </h2>
+              <p
+                className="leading-relaxed"
+                style={{
+                  color: 'var(--foreground)',
+                  opacity: 0.6,
+                }}
+              >
+                Organize your products with categories
+              </p>
+              <div
+                className="mt-6 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2"
+                style={{ color: 'var(--foreground)' }}
+              >
                 Go to Categories
                 <span className="group-hover:translate-x-2 transition-transform inline-block">→</span>
               </div>
@@ -86,14 +174,39 @@ export default function AdminPage() {
           {/* Orders Card */}
           <Link
             href="/admin/orders"
-            className="group relative bg-gradient-to-br from-gray-900 to-gray-900/80 rounded-2xl border border-gray-800 p-8 hover:border-white/20 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-white/10 overflow-hidden"
+            className="group relative rounded-2xl p-8 hover:-translate-y-3 hover:shadow-2xl overflow-hidden transition-all"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"></div>
+            <div
+              className="absolute inset-0 group-hover:from-white/5 group-hover:to-transparent transition-all duration-500"
+              style={{
+                background: 'linear-gradient(to bottom right, transparent, transparent)',
+              }}
+            ></div>
             <div className="relative z-10">
               <div className="text-6xl mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">📋</div>
-              <h2 className="text-3xl font-black text-white mb-3">Manage Orders</h2>
-              <p className="text-gray-400 leading-relaxed">View and update customer order status</p>
-              <div className="mt-6 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+              <h2
+                className="text-3xl font-black mb-3"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Manage Orders
+              </h2>
+              <p
+                className="leading-relaxed"
+                style={{
+                  color: 'var(--foreground)',
+                  opacity: 0.6,
+                }}
+              >
+                View and update customer order status
+              </p>
+              <div
+                className="mt-6 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2"
+                style={{ color: 'var(--foreground)' }}
+              >
                 Go to Orders
                 <span className="group-hover:translate-x-2 transition-transform inline-block">→</span>
               </div>

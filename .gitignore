@@ -1,0 +1,40 @@
+# Frontend
+node_modules/
+.next/
+out/
+build/
+.env.local
+.env.*.local
+*.pem
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Backend
+target/
+.mvn/
+.idea/
+*.iml
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+.classpath
+.project
+.settings/
+.vscode/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local

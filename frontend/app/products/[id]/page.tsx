@@ -18,6 +18,7 @@ interface Product {
   price: number;
   stock: number;
   imageUrl: string;
+  images?: string[];
   category: {
     id: number;
     name: string;
@@ -34,6 +35,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [addingToCart, setAddingToCart] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     fetchProduct();
@@ -53,6 +55,24 @@ export default function ProductDetailPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Get all product images (main + additional)
+  const productImages = product?.images && product.images.length > 0
+    ? [product.imageUrl, ...product.images]
+    : [product?.imageUrl || ''];
+
+  // Slideshow navigation
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
+  };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+  };
+
+  const goToImage = (index: number) => {
+    setCurrentImageIndex(index);
   };
 
   const addToCart = async () => {
@@ -173,6 +193,7 @@ export default function ProductDetailPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
           {/* Product Image Section */}
           <div className="flex flex-col gap-6">
+            {/* Main Image Display */}
             <div
               className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden border-2 transition-all group"
               style={{
@@ -188,7 +209,7 @@ export default function ProductDetailPage() {
                 }}
               ></div>
               <Image
-                src={product.imageUrl}
+                src={productImages[currentImageIndex]}
                 alt={product.name}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -209,7 +230,88 @@ export default function ProductDetailPage() {
                   opacity: 0.03,
                 }}
               ></div>
+
+              {/* Previous Button */}
+              {productImages.length > 1 && (
+                <button
+                  onClick={previousImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full transition-all transform hover:scale-110 opacity-0 group-hover:opacity-100"
+                  style={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    color: '#ffffff',
+                  }}
+                  title="Previous image"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Next Button */}
+              {productImages.length > 1 && (
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full transition-all transform hover:scale-110 opacity-0 group-hover:opacity-100"
+                  style={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    color: '#ffffff',
+                  }}
+                  title="Next image"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Image Counter */}
+              {productImages.length > 1 && (
+                <div
+                  className="absolute bottom-4 right-4 z-30 px-4 py-2 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    color: '#ffffff',
+                  }}
+                >
+                  {currentImageIndex + 1} / {productImages.length}
+                </div>
+              )}
             </div>
+
+            {/* Image Slideshow Thumbnails */}
+            {productImages.length > 1 && (
+              <div className="flex gap-3 overflow-x-auto pb-2">
+                {productImages.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToImage(index)}
+                    className={`relative flex-shrink-0 h-24 w-24 rounded-2xl border-2 overflow-hidden transition-all transform hover:scale-110 ${
+                      currentImageIndex === index ? 'ring-2' : ''
+                    }`}
+                    style={{
+                      backgroundColor: 'var(--card-bg)',
+                      borderColor: currentImageIndex === index ? 'var(--foreground)' : 'var(--card-border)',
+                      boxShadow: currentImageIndex === index ? `0 0 0 2px var(--card-bg), 0 0 0 4px var(--foreground)` : 'none',
+                    }}
+                    title={`View image ${index + 1}`}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${product.name} - Image ${index + 1}`}
+                      fill
+                      className="object-cover opacity-80 hover:opacity-100 transition-opacity"
+                    />
+                    {currentImageIndex === index && (
+                      <div
+                        className="absolute inset-0 border-2"
+                        style={{ borderColor: 'var(--foreground)' }}
+                      ></div>
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Details Section */}

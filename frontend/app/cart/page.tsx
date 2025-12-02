@@ -231,7 +231,10 @@ export default function CartPage() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-black text-2xl text-white">
+                  <p
+                    className="font-black text-2xl"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     ${(item.product.price * item.quantity).toFixed(2)}
                   </p>
                 </div>
@@ -241,25 +244,67 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8 sticky top-4">
-              <h2 className="text-2xl font-black text-white mb-6">Order Summary</h2>
+            <div
+              className="border rounded-2xl p-8 sticky top-4"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+              }}
+            >
+              <h2
+                className="text-2xl font-black mb-6"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Order Summary
+              </h2>
               <div className="space-y-4 mb-6">
-                <div className="flex justify-between text-gray-400">
+                <div
+                  className="flex justify-between"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
                   <span>Subtotal:</span>
-                  <span className="text-white font-bold">${getTotalPrice().toFixed(2)}</span>
+                  <span
+                    className="font-bold"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    ${getTotalPrice().toFixed(2)}
+                  </span>
                 </div>
-                <div className="flex justify-between text-gray-400">
+                <div
+                  className="flex justify-between"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
                   <span>Shipping:</span>
-                  <span className="text-green-500 font-semibold">Free</span>
+                  <span className="font-semibold" style={{ color: '#10b981' }}>
+                    Free
+                  </span>
                 </div>
-                <div className="border-t border-gray-800 pt-4 flex justify-between text-white">
+                <div
+                  className="border-t pt-4 flex justify-between"
+                  style={{
+                    borderColor: 'var(--card-border)',
+                    color: 'var(--foreground)',
+                  }}
+                >
                   <span className="font-black text-xl">Total:</span>
-                  <span className="font-black text-2xl">${getTotalPrice().toFixed(2)}</span>
+                  <span className="font-black text-2xl">
+                    ${getTotalPrice().toFixed(2)}
+                  </span>
                 </div>
               </div>
               <button
                 onClick={() => router.push('/checkout')}
-                className="w-full bg-white text-black py-4 rounded-full font-black text-lg hover:bg-gray-200 transition-all transform hover:scale-105 shadow-lg"
+                className="w-full py-4 rounded-full font-black text-lg transition-all transform hover:scale-105 shadow-lg"
+                style={{
+                  backgroundColor: 'var(--foreground)',
+                  color: 'var(--background)',
+                }}
               >
                 Proceed to Checkout →
               </button>

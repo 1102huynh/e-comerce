@@ -403,24 +403,45 @@ export default function CheckoutPage() {
 
   if (!isHydrated || !user) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
         <div className="text-center">
           <div className="text-4xl mb-4">⏳</div>
-          <p className="text-white text-lg">Loading checkout...</p>
+          <p className="text-lg" style={{ color: 'var(--foreground)' }}>
+            Loading checkout...
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-black py-12">
+    <div
+      className="min-h-screen py-12"
+      style={{ backgroundColor: 'var(--background)' }}
+    >
       <div className="container mx-auto px-4 py-12 max-w-5xl">
         {/* Header */}
         <div className="mb-12 text-center">
           <div className="text-6xl mb-4 inline-block">💳</div>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-4">Checkout</h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-white to-transparent mx-auto mb-4"></div>
-          <p className="text-gray-400">Complete your purchase securely</p>
+          <h1
+            className="text-5xl md:text-6xl font-black mb-4"
+            style={{ color: 'var(--foreground)' }}
+          >
+            Checkout
+          </h1>
+          <div
+            className="w-24 h-1 mx-auto mb-4"
+            style={{
+              background: `linear-gradient(to right, transparent, var(--foreground), transparent)`,
+              opacity: 0.3,
+            }}
+          ></div>
+          <p style={{ color: 'var(--foreground)', opacity: 0.6 }}>
+            Complete your purchase securely
+          </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -428,41 +449,84 @@ export default function CheckoutPage() {
           <div className="lg:col-span-2">
             <form
               onSubmit={handleSubmit}
-              className="relative bg-gradient-to-br from-gray-900 to-gray-900/80 border-2 border-gray-800 rounded-2xl p-8 shadow-2xl hover:border-gray-700 transition-colors overflow-hidden"
+              className="relative border-2 rounded-2xl p-8 shadow-2xl overflow-hidden transition-colors"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+              }}
             >
               {/* Region Selection */}
               <div className="mb-8">
-                <h2 className="text-2xl font-black text-white mb-6">Delivery Region</h2>
+                <h2
+                  className="text-2xl font-black mb-6"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Delivery Region
+                </h2>
                 <div className="space-y-3">
-                  <label className="flex items-center p-4 bg-gray-800/50 border-2 rounded-lg cursor-pointer transition-all"
-                    style={{ borderColor: region === 'vietnam' ? '#ffffff' : '#374151' }}>
+                  <label
+                    className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all"
+                    style={{
+                      backgroundColor: 'var(--button-hover)',
+                      borderColor:
+                        region === 'vietnam' ? 'var(--foreground)' : 'var(--card-border)',
+                    }}
+                  >
                     <input
                       type="radio"
                       name="region"
                       value="vietnam"
                       checked={region === 'vietnam'}
                       onChange={(e) => handleRegionChange(e.target.value)}
-                      className="w-4 h-4 accent-white"
+                      className="w-4 h-4"
+                      style={{ accentColor: 'var(--foreground)' }}
                     />
                     <div className="ml-4 flex-1">
-                      <p className="text-white font-bold">🇻🇳 Vietnam</p>
-                      <p className="text-xs text-gray-400">Southeast Asia</p>
+                      <p
+                        className="font-bold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        🇻🇳 Vietnam
+                      </p>
+                      <p
+                        className="text-xs"
+                        style={{ color: 'var(--foreground)', opacity: 0.6 }}
+                      >
+                        Southeast Asia
+                      </p>
                     </div>
                   </label>
 
-                  <label className="flex items-center p-4 bg-gray-800/50 border-2 rounded-lg cursor-pointer transition-all"
-                    style={{ borderColor: region === 'europe' ? '#ffffff' : '#374151' }}>
+                  <label
+                    className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all"
+                    style={{
+                      backgroundColor: 'var(--button-hover)',
+                      borderColor:
+                        region === 'europe' ? 'var(--foreground)' : 'var(--card-border)',
+                    }}
+                  >
                     <input
                       type="radio"
                       name="region"
                       value="europe"
                       checked={region === 'europe'}
                       onChange={(e) => handleRegionChange(e.target.value)}
-                      className="w-4 h-4 accent-white"
+                      className="w-4 h-4"
+                      style={{ accentColor: 'var(--foreground)' }}
                     />
                     <div className="ml-4 flex-1">
-                      <p className="text-white font-bold">🇪🇺 Europe</p>
-                      <p className="text-xs text-gray-400">European Union</p>
+                      <p
+                        className="font-bold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        🇪🇺 Europe
+                      </p>
+                      <p
+                        className="text-xs"
+                        style={{ color: 'var(--foreground)', opacity: 0.6 }}
+                      >
+                        European Union
+                      </p>
                     </div>
                   </label>
                 </div>
@@ -470,12 +534,21 @@ export default function CheckoutPage() {
 
               {/* Shipping Address */}
               <div className="mb-8">
-                <h2 className="text-2xl font-black text-white mb-6">Shipping Address</h2>
+                <h2
+                  className="text-2xl font-black mb-6"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Shipping Address
+                </h2>
                 <div className="space-y-5">
                   {/* Address */}
                   <div>
-                    <label className="block text-sm font-bold text-white mb-3">
-                      📍 Street Address <span className="text-red-400">*</span>
+                    <label
+                      className="block text-sm font-bold mb-3"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      📍 Street Address{' '}
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <textarea
                       required
@@ -483,22 +556,33 @@ export default function CheckoutPage() {
                       onChange={(e) => handleAddressChange(e.target.value)}
                       placeholder="123 Main St, City, State, ZIP"
                       rows={3}
-                      className={`w-full px-4 py-4 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all hover:border-gray-600 resize-none ${
-                        errors.shippingAddress ? 'border-red-500 hover:border-red-400' : 'border-gray-700'
-                      }`}
+                      className="w-full px-4 py-4 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all resize-none"
+                      style={{
+                        backgroundColor: 'var(--input-bg)',
+                        borderColor:
+                          errors.shippingAddress ? '#ef4444' : 'var(--input-border)',
+                        color: 'var(--foreground)',
+                        '--tw-ring-color': 'var(--foreground)',
+                      } as any}
                     />
                     {errors.shippingAddress && (
-                      <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                      <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                         <span>⚠️</span> {errors.shippingAddress}
                       </p>
                     )}
-                    <p className="text-gray-400 text-xs mt-1">Minimum 10 characters • Maximum 200 characters</p>
+                    <p className="text-xs mt-1" style={{ color: 'var(--foreground)', opacity: 0.6 }}>
+                      Minimum 10 characters • Maximum 200 characters
+                    </p>
                   </div>
 
                   {/* Phone */}
                   <div>
-                    <label className="block text-sm font-bold text-white mb-3">
-                      📞 Phone Number <span className="text-red-400">*</span>
+                    <label
+                      className="block text-sm font-bold mb-3"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      📞 Phone Number{' '}
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="tel"
@@ -506,16 +590,20 @@ export default function CheckoutPage() {
                       value={formData.phone}
                       onChange={(e) => handlePhoneChange(e.target.value)}
                       placeholder="(123) 456-7890"
-                      className={`w-full px-4 py-4 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all hover:border-gray-600 text-white ${
-                        errors.phone ? 'border-red-500 hover:border-red-400' : 'border-gray-700'
-                      }`}
+                      className="w-full px-4 py-4 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                      style={{
+                        backgroundColor: 'var(--input-bg)',
+                        borderColor: errors.phone ? '#ef4444' : 'var(--input-border)',
+                        color: 'var(--foreground)',
+                        '--tw-ring-color': 'var(--foreground)',
+                      } as any}
                     />
                     {errors.phone && (
-                      <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                      <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                         <span>⚠️</span> {errors.phone}
                       </p>
                     )}
-                    <p className="text-gray-400 text-xs mt-1">
+                    <p className="text-xs mt-1" style={{ color: 'var(--foreground)', opacity: 0.6 }}>
                       {region === 'vietnam'
                         ? '🇻🇳 Format: 0xxxxxxxxxx or 84xxxxxxxxx (10-11 digits)'
                         : '🇪🇺 Format: 10-15 digits (with or without +)'}
@@ -525,63 +613,127 @@ export default function CheckoutPage() {
               </div>
 
               {/* Security Note */}
-              <div className="mb-8 p-4 bg-green-500/10 border-2 border-green-500/30 rounded-lg flex items-start gap-3">
+              <div
+                className="mb-8 p-4 border-2 rounded-lg flex items-start gap-3"
+                style={{
+                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  borderColor: 'rgba(16, 185, 129, 0.3)',
+                }}
+              >
                 <span className="text-2xl mt-1">🔒</span>
                 <div>
-                  <p className="text-sm font-bold text-green-400">Secure Checkout</p>
-                  <p className="text-xs text-green-400/80">Your information is encrypted and secured with industry-leading SSL technology</p>
+                  <p className="text-sm font-bold" style={{ color: '#10b981' }}>
+                    Secure Checkout
+                  </p>
+                  <p className="text-xs" style={{ color: '#10b981', opacity: 0.8 }}>
+                    Your information is encrypted and secured with industry-leading SSL technology
+                  </p>
                 </div>
               </div>
 
               {/* Payment Methods */}
               <div className="mb-8">
-                <h2 className="text-2xl font-black text-white mb-6">Payment Method</h2>
+                <h2
+                  className="text-2xl font-black mb-6"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Payment Method
+                </h2>
                 <div className="space-y-3">
                   {getPaymentMethods().map((method) => (
-                    <label key={method.id} className="flex items-center p-4 bg-gray-800/50 border-2 border-gray-700 rounded-lg cursor-pointer hover:border-gray-600 hover:bg-gray-800 transition-all">
+                    <label
+                      key={method.id}
+                      className="flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all"
+                      style={{
+                        backgroundColor: 'var(--button-hover)',
+                        borderColor:
+                          paymentMethod === method.id
+                            ? 'var(--foreground)'
+                            : 'var(--card-border)',
+                      }}
+                    >
                       <input
                         type="radio"
                         name="paymentMethod"
                         value={method.id}
                         checked={paymentMethod === method.id}
                         onChange={(e) => setPaymentMethod(e.target.value)}
-                        className="w-4 h-4 accent-white"
+                        className="w-4 h-4"
+                        style={{ accentColor: 'var(--foreground)' }}
                       />
                       <div className="ml-4 flex-1">
-                        <p className="text-white font-bold">{method.icon} {method.label}</p>
-                        <p className="text-xs text-gray-400">{method.desc}</p>
+                        <p
+                          className="font-bold"
+                          style={{ color: 'var(--foreground)' }}
+                        >
+                          {method.icon} {method.label}
+                        </p>
+                        <p
+                          className="text-xs"
+                          style={{ color: 'var(--foreground)', opacity: 0.6 }}
+                        >
+                          {method.desc}
+                        </p>
                       </div>
                     </label>
                   ))}
                 </div>
 
-                <div className="mt-4 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg text-xs text-blue-400">
+                <div
+                  className="mt-4 p-3 border rounded-lg text-xs"
+                  style={{
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderColor: 'rgba(59, 130, 246, 0.3)',
+                    color: '#3b82f6',
+                  }}
+                >
                   ℹ️ A detailed invoice will be sent to your email after order confirmation
                 </div>
               </div>
 
               {/* Payment Details - Momo */}
               {paymentMethod === 'momo' && (
-                <div className="mb-8 p-6 bg-pink-500/10 border-2 border-pink-500/30 rounded-xl">
-                  <h3 className="text-lg font-black text-white mb-4 flex items-center gap-2">
+                <div
+                  className="mb-8 p-6 border-2 rounded-xl"
+                  style={{
+                    backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                    borderColor: 'rgba(236, 72, 153, 0.3)',
+                  }}
+                >
+                  <h3 className="text-lg font-black mb-4 flex items-center gap-2" style={{ color: '#ec4899' }}>
                     <span>📱</span> Momo Payment Details
                   </h3>
-                  <p className="text-xs text-pink-400 mb-4">Money will be automatically deducted from your Momo wallet</p>
+                  <p className="text-xs mb-4" style={{ color: '#ec4899' }}>
+                    Money will be automatically deducted from your Momo wallet
+                  </p>
                   <div>
-                    <label className="block text-sm font-bold text-white mb-2">
-                      📞 Momo Phone Number <span className="text-red-400">*</span>
+                    <label
+                      className="block text-sm font-bold mb-2"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      📞 Momo Phone Number{' '}
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="tel"
                       value={paymentDetails.momoPhone}
-                      onChange={(e) => setPaymentDetails({ ...paymentDetails, momoPhone: e.target.value })}
+                      onChange={(e) =>
+                        setPaymentDetails({
+                          ...paymentDetails,
+                          momoPhone: e.target.value,
+                        })
+                      }
                       placeholder="0912345678"
-                      className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                        paymentErrors.momoPhone ? 'border-red-500' : 'border-gray-700'
-                      }`}
+                      className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                      style={{
+                        backgroundColor: 'var(--input-bg)',
+                        borderColor: paymentErrors.momoPhone ? '#ef4444' : 'var(--input-border)',
+                        color: 'var(--foreground)',
+                        '--tw-ring-color': 'var(--foreground)',
+                      } as any}
                     />
                     {paymentErrors.momoPhone && (
-                      <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                      <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                         <span>⚠️</span> {paymentErrors.momoPhone}
                       </p>
                     )}
@@ -591,16 +743,28 @@ export default function CheckoutPage() {
 
               {/* Payment Details - Card */}
               {paymentMethod === 'card' && (
-                <div className="mb-8 p-6 bg-blue-500/10 border-2 border-blue-500/30 rounded-xl">
-                  <h3 className="text-lg font-black text-white mb-4 flex items-center gap-2">
+                <div
+                  className="mb-8 p-6 border-2 rounded-xl"
+                  style={{
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderColor: 'rgba(59, 130, 246, 0.3)',
+                  }}
+                >
+                  <h3 className="text-lg font-black mb-4 flex items-center gap-2" style={{ color: '#3b82f6' }}>
                     <span>💳</span> Card Payment Details
                   </h3>
-                  <p className="text-xs text-blue-400 mb-4">Money will be automatically deducted from your card</p>
+                  <p className="text-xs mb-4" style={{ color: '#3b82f6' }}>
+                    Money will be automatically deducted from your card
+                  </p>
                   <div className="space-y-4">
                     {/* Card Number */}
                     <div>
-                      <label className="block text-sm font-bold text-white mb-2">
-                        Card Number <span className="text-red-400">*</span>
+                      <label
+                        className="block text-sm font-bold mb-2"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        Card Number{' '}
+                        <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
                         type="text"
@@ -615,12 +779,16 @@ export default function CheckoutPage() {
                           })
                         }
                         placeholder="4532 1234 5678 9010"
-                        className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                          paymentErrors.cardNumber ? 'border-red-500' : 'border-gray-700'
-                        }`}
+                        className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                        style={{
+                          backgroundColor: 'var(--input-bg)',
+                          borderColor: paymentErrors.cardNumber ? '#ef4444' : 'var(--input-border)',
+                          color: 'var(--foreground)',
+                          '--tw-ring-color': 'var(--foreground)',
+                        } as any}
                       />
                       {paymentErrors.cardNumber && (
-                        <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                        <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                           <span>⚠️</span> {paymentErrors.cardNumber}
                         </p>
                       )}
@@ -628,20 +796,33 @@ export default function CheckoutPage() {
 
                     {/* Card Holder */}
                     <div>
-                      <label className="block text-sm font-bold text-white mb-2">
-                        Card Holder Name <span className="text-red-400">*</span>
+                      <label
+                        className="block text-sm font-bold mb-2"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        Card Holder Name{' '}
+                        <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
                         type="text"
                         value={paymentDetails.cardHolder}
-                        onChange={(e) => setPaymentDetails({ ...paymentDetails, cardHolder: e.target.value })}
+                        onChange={(e) =>
+                          setPaymentDetails({
+                            ...paymentDetails,
+                            cardHolder: e.target.value,
+                          })
+                        }
                         placeholder="John Doe"
-                        className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                          paymentErrors.cardHolder ? 'border-red-500' : 'border-gray-700'
-                        }`}
+                        className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                        style={{
+                          backgroundColor: 'var(--input-bg)',
+                          borderColor: paymentErrors.cardHolder ? '#ef4444' : 'var(--input-border)',
+                          color: 'var(--foreground)',
+                          '--tw-ring-color': 'var(--foreground)',
+                        } as any}
                       />
                       {paymentErrors.cardHolder && (
-                        <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                        <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                           <span>⚠️</span> {paymentErrors.cardHolder}
                         </p>
                       )}
@@ -650,8 +831,12 @@ export default function CheckoutPage() {
                     {/* Expiry & CVV */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-bold text-white mb-2">
-                          Expiry Date <span className="text-red-400">*</span>
+                        <label
+                          className="block text-sm font-bold mb-2"
+                          style={{ color: 'var(--foreground)' }}
+                        >
+                          Expiry Date{' '}
+                          <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -661,24 +846,34 @@ export default function CheckoutPage() {
                             if (val.length >= 2) {
                               val = val.slice(0, 2) + '/' + val.slice(2, 4);
                             }
-                            setPaymentDetails({ ...paymentDetails, expiryDate: val });
+                            setPaymentDetails({
+                              ...paymentDetails,
+                              expiryDate: val,
+                            });
                           }}
                           placeholder="MM/YY"
                           maxLength={5}
-                          className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                            paymentErrors.expiryDate ? 'border-red-500' : 'border-gray-700'
-                          }`}
+                          className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                          style={{
+                            backgroundColor: 'var(--input-bg)',
+                            borderColor: paymentErrors.expiryDate ? '#ef4444' : 'var(--input-border)',
+                            color: 'var(--foreground)',
+                            '--tw-ring-color': 'var(--foreground)',
+                          } as any}
                         />
                         {paymentErrors.expiryDate && (
-                          <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
+                          <p className="text-xs mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                             <span>⚠️</span> {paymentErrors.expiryDate}
                           </p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-sm font-bold text-white mb-2">
-                          CVV <span className="text-red-400">*</span>
+                        <label
+                          className="block text-sm font-bold mb-2"
+                          style={{ color: 'var(--foreground)' }}
+                        >
+                          CVV <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -693,19 +888,30 @@ export default function CheckoutPage() {
                           }
                           placeholder="123"
                           maxLength={4}
-                          className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                            paymentErrors.cvv ? 'border-red-500' : 'border-gray-700'
-                          }`}
+                          className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                          style={{
+                            backgroundColor: 'var(--input-bg)',
+                            borderColor: paymentErrors.cvv ? '#ef4444' : 'var(--input-border)',
+                            color: 'var(--foreground)',
+                            '--tw-ring-color': 'var(--foreground)',
+                          } as any}
                         />
                         {paymentErrors.cvv && (
-                          <p className="text-red-400 text-xs mt-2 flex items-center gap-1">
+                          <p className="text-xs mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                             <span>⚠️</span> {paymentErrors.cvv}
                           </p>
                         )}
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg text-xs text-yellow-400">
+                  <div
+                    className="mt-4 p-3 border rounded-lg text-xs"
+                    style={{
+                      backgroundColor: 'rgba(234, 179, 8, 0.1)',
+                      borderColor: 'rgba(234, 179, 8, 0.3)',
+                      color: '#eab308',
+                    }}
+                  >
                     🔒 Your card details are encrypted and secure. We do not store full card information.
                   </div>
                 </div>
@@ -713,26 +919,49 @@ export default function CheckoutPage() {
 
               {/* Payment Details - PayPal */}
               {paymentMethod === 'paypal' && (
-                <div className="mb-8 p-6 bg-blue-500/10 border-2 border-blue-500/30 rounded-xl">
-                  <h3 className="text-lg font-black text-white mb-4 flex items-center gap-2">
+                <div
+                  className="mb-8 p-6 border-2 rounded-xl"
+                  style={{
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    borderColor: 'rgba(59, 130, 246, 0.3)',
+                  }}
+                >
+                  <h3 className="text-lg font-black mb-4 flex items-center gap-2" style={{ color: '#3b82f6' }}>
                     <span>🅿️</span> PayPal Payment Details
                   </h3>
-                  <p className="text-xs text-blue-400 mb-4">Money will be automatically deducted from your PayPal account</p>
+                  <p className="text-xs mb-4" style={{ color: '#3b82f6' }}>
+                    Money will be automatically deducted from your PayPal account
+                  </p>
                   <div>
-                    <label className="block text-sm font-bold text-white mb-2">
-                      PayPal Email <span className="text-red-400">*</span>
+                    <label
+                      className="block text-sm font-bold mb-2"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      PayPal Email{' '}
+                      <span style={{ color: '#ef4444' }}>*</span>
                     </label>
                     <input
                       type="email"
                       value={paymentDetails.paypalEmail}
-                      onChange={(e) => setPaymentDetails({ ...paymentDetails, paypalEmail: e.target.value })}
+                      onChange={(e) =>
+                        setPaymentDetails({
+                          ...paymentDetails,
+                          paypalEmail: e.target.value,
+                        })
+                      }
                       placeholder="your@email.com"
-                      className={`w-full px-4 py-3 bg-gray-800 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent placeholder-gray-500 transition-all text-white ${
-                        paymentErrors.paypalEmail ? 'border-red-500' : 'border-gray-700'
-                      }`}
+                      className="w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 transition-all"
+                      style={{
+                        backgroundColor: 'var(--input-bg)',
+                        borderColor: paymentErrors.paypalEmail
+                          ? '#ef4444'
+                          : 'var(--input-border)',
+                        color: 'var(--foreground)',
+                        '--tw-ring-color': 'var(--foreground)',
+                      } as any}
                     />
                     {paymentErrors.paypalEmail && (
-                      <p className="text-red-400 text-sm mt-2 flex items-center gap-1">
+                      <p className="text-sm mt-2 flex items-center gap-1" style={{ color: '#ef4444' }}>
                         <span>⚠️</span> {paymentErrors.paypalEmail}
                       </p>
                     )}
@@ -745,14 +974,27 @@ export default function CheckoutPage() {
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 bg-gray-800 hover:bg-gray-700 text-white font-bold py-4 px-6 rounded-lg border-2 border-gray-700 hover:border-gray-600 transition-all"
+                  className="flex-1 font-bold py-4 px-6 rounded-lg border-2 transition-all"
+                  style={{
+                    backgroundColor: 'var(--card-bg)',
+                    borderColor: 'var(--card-border)',
+                    color: 'var(--foreground)',
+                  }}
                 >
                   ← Back
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 bg-gradient-to-r from-white to-gray-100 text-black font-black py-4 px-6 rounded-lg hover:from-gray-200 hover:to-white disabled:from-gray-700 disabled:to-gray-600 disabled:text-gray-500 disabled:cursor-not-allowed transition-all transform hover:scale-105 shadow-lg"
+                  className="flex-1 font-black py-4 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                  style={{
+                    backgroundColor: loading
+                      ? 'rgba(0, 0, 0, 0.2)'
+                      : 'var(--foreground)',
+                    color: loading ? 'var(--foreground)' : 'var(--background)',
+                    cursor: loading ? 'not-allowed' : 'pointer',
+                    opacity: loading ? 0.6 : 1,
+                  }}
                 >
                   {loading ? '⏳ Processing Payment...' : '✓ Place Order'}
                 </button>
@@ -762,45 +1004,117 @@ export default function CheckoutPage() {
 
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-20 bg-gradient-to-br from-gray-900 to-gray-800 border-2 border-gray-800 rounded-2xl p-8 shadow-2xl">
-              <h3 className="text-2xl font-black text-white mb-6">Order Summary</h3>
+            <div
+              className="sticky top-20 border-2 rounded-2xl p-8 shadow-2xl"
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                borderColor: 'var(--card-border)',
+              }}
+            >
+              <h3
+                className="text-2xl font-black mb-6"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Order Summary
+              </h3>
 
               {/* Items */}
               <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
                 {cart.map((item: CartItem) => (
-                  <div key={item.id} className="flex justify-between items-start text-sm py-3 border-b border-gray-700 last:border-0">
+                  <div
+                    key={item.id}
+                    className="flex justify-between items-start text-sm py-3 last:border-0"
+                    style={{
+                      borderBottom: '1px solid var(--card-border)',
+                      color: 'var(--foreground)',
+                    }}
+                  >
                     <div className="flex-1">
-                      <p className="text-white font-semibold">{item.name}</p>
-                      <p className="text-gray-400 text-xs">Qty: {item.quantity}</p>
+                      <p className="font-semibold" style={{ color: 'var(--foreground)' }}>
+                        {item.name}
+                      </p>
+                      <p style={{ color: 'var(--foreground)', opacity: 0.6 }} className="text-xs">
+                        Qty: {item.quantity}
+                      </p>
                     </div>
-                    <p className="text-white font-bold">${(item.price * item.quantity).toFixed(2)}</p>
+                    <p
+                      className="font-bold"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
                   </div>
                 ))}
               </div>
 
               {/* Pricing Breakdown */}
-              <div className="space-y-3 py-6 border-y border-gray-700">
-                <div className="flex justify-between text-gray-300">
+              <div
+                className="space-y-3 py-6"
+                style={{
+                  borderTop: '1px solid var(--card-border)',
+                  borderBottom: '1px solid var(--card-border)',
+                }}
+              >
+                <div
+                  className="flex justify-between"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
                   <span>Subtotal</span>
                   <span>${orderSummary.subtotal.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-gray-300">
+                <div
+                  className="flex justify-between"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
                   <span>Tax (10%)</span>
                   <span>${orderSummary.tax.toFixed(2)}</span>
                 </div>
-                <div className="flex justify-between text-gray-300">
+                <div
+                  className="flex justify-between"
+                  style={{
+                    color: 'var(--foreground)',
+                    opacity: 0.7,
+                  }}
+                >
                   <span>Shipping</span>
-                  <span className={orderSummary.shipping === 0 ? 'text-green-400 font-bold' : ''}>
+                  <span
+                    className="font-bold"
+                    style={{
+                      color: orderSummary.shipping === 0 ? '#10b981' : 'var(--foreground)',
+                    }}
+                  >
                     {orderSummary.shipping === 0 ? 'FREE ✓' : `$${orderSummary.shipping.toFixed(2)}`}
                   </span>
                 </div>
               </div>
 
               {/* Total */}
-              <div className="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
+              <div
+                className="mt-6 p-4 rounded-lg border"
+                style={{
+                  backgroundColor: 'var(--button-hover)',
+                  borderColor: 'var(--card-border)',
+                }}
+              >
                 <div className="flex justify-between items-baseline">
-                  <span className="text-lg font-black text-white">Total</span>
-                  <span className="text-4xl font-black text-white">${orderSummary.total.toFixed(2)}</span>
+                  <span
+                    className="text-lg font-black"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    Total
+                  </span>
+                  <span
+                    className="text-4xl font-black"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    ${orderSummary.total.toFixed(2)}
+                  </span>
                 </div>
               </div>
 
@@ -815,7 +1129,12 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={() => router.push('/products')}
-                className="w-full mt-6 bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-all"
+                className="w-full mt-6 font-semibold py-3 px-4 rounded-lg transition-all"
+                style={{
+                  backgroundColor: 'var(--button-hover)',
+                  color: 'var(--foreground)',
+                  border: `1px solid var(--card-border)`,
+                }}
               >
                 Continue Shopping
               </button>

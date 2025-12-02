@@ -30,6 +30,8 @@ export default function AdminProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -87,11 +89,18 @@ export default function AdminProductsPage() {
       }
 
       resetForm();
+      setCurrentPage(1); // Reset to first page after creating/updating
       fetchProducts();
     } catch (error) {
       toast.error('Failed to save product');
     }
   };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedProducts = products.slice(startIndex, endIndex);
 
   const handleEdit = (product: Product) => {
     setEditingId(product.id);
@@ -290,12 +299,22 @@ export default function AdminProductsPage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-white mb-2">Category *</label>
+              <label
+                className="block text-sm font-bold mb-2"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Category *
+              </label>
               <select
                 required
                 value={formData.categoryId}
                 onChange={(e) => setFormData({ ...formData, categoryId: e.target.value })}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+                style={{
+                  backgroundColor: 'var(--input-bg)',
+                  borderColor: 'var(--input-border)',
+                  color: 'var(--foreground)',
+                }}
+                className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
               >
                 <option value="">Select category</option>
                 {categories.map((cat) => (
@@ -307,7 +326,11 @@ export default function AdminProductsPage() {
             </div>
             <button
               type="submit"
-              className="w-full bg-white text-black px-8 py-4 rounded-full font-black hover:bg-gray-200 transition-all transform hover:scale-105"
+              className="w-full px-8 py-4 rounded-full font-black transition-all transform hover:scale-105"
+              style={{
+                backgroundColor: 'var(--foreground)',
+                color: 'var(--background)',
+              }}
             >
               {editingId ? '💾 Update Product' : '➕ Create Product'}
             </button>
@@ -315,36 +338,111 @@ export default function AdminProductsPage() {
           </div>
         </div>
 
-        <div className="bg-gray-900 border border-gray-800 rounded-2xl overflow-hidden">
+        <div
+          className="border rounded-2xl overflow-hidden"
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            borderColor: 'var(--card-border)',
+          }}
+        >
           <table className="w-full">
-            <thead className="bg-gray-800 border-b border-gray-700">
+            <thead
+              style={{
+                backgroundColor: 'var(--button-hover)',
+                borderColor: 'var(--card-border)',
+              }}
+              className="border-b"
+            >
               <tr>
-                <th className="px-6 py-4 text-left text-white font-bold">ID</th>
-                <th className="px-6 py-4 text-left text-white font-bold">Name</th>
-                <th className="px-6 py-4 text-left text-white font-bold">Price</th>
-                <th className="px-6 py-4 text-left text-white font-bold">Stock</th>
-                <th className="px-6 py-4 text-left text-white font-bold">Category</th>
-                <th className="px-6 py-4 text-left text-white font-bold">Actions</th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  ID
+                </th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Name
+                </th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Price
+                </th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Stock
+                </th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Category
+                </th>
+                <th
+                  className="px-6 py-4 text-left font-bold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product.id} className="border-t border-gray-800 hover:bg-gray-800 transition-colors">
-                  <td className="px-6 py-4 text-gray-400">{product.id}</td>
-                  <td className="px-6 py-4 text-white font-semibold">{product.name}</td>
-                  <td className="px-6 py-4 text-white font-bold">${product.price}</td>
-                  <td className="px-6 py-4 text-gray-400">{product.stock}</td>
-                  <td className="px-6 py-4 text-gray-400">{product.category.name}</td>
+              {paginatedProducts.map((product) => (
+                <tr
+                  key={product.id}
+                  className="border-t transition-colors hover:opacity-80"
+                  style={{
+                    borderColor: 'var(--card-border)',
+                  }}
+                >
+                  <td
+                    className="px-6 py-4"
+                    style={{ color: 'var(--foreground)', opacity: 0.7 }}
+                  >
+                    {product.id}
+                  </td>
+                  <td
+                    className="px-6 py-4 font-semibold"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    {product.name}
+                  </td>
+                  <td
+                    className="px-6 py-4 font-bold"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    ${product.price}
+                  </td>
+                  <td
+                    className="px-6 py-4"
+                    style={{ color: 'var(--foreground)', opacity: 0.7 }}
+                  >
+                    {product.stock}
+                  </td>
+                  <td
+                    className="px-6 py-4"
+                    style={{ color: 'var(--foreground)', opacity: 0.7 }}
+                  >
+                    {product.category.name}
+                  </td>
                   <td className="px-6 py-4">
                     <button
                       onClick={() => handleEdit(product)}
-                      className="text-blue-400 hover:text-blue-300 mr-4 font-semibold"
+                      className="mr-4 font-semibold hover:opacity-80 transition-opacity"
+                      style={{ color: '#3b82f6' }}
                     >
                       ✏️ Edit
                     </button>
                     <button
                       onClick={() => handleDelete(product.id)}
-                      className="text-red-400 hover:text-red-300 font-semibold"
+                      className="font-semibold hover:opacity-80 transition-opacity"
+                      style={{ color: '#ef4444' }}
                     >
                       🗑️ Delete
                     </button>
@@ -353,6 +451,66 @@ export default function AdminProductsPage() {
               ))}
             </tbody>
           </table>
+
+          {/* Pagination Controls */}
+          <div
+            className="border-t px-6 py-4 flex items-center justify-between"
+            style={{
+              backgroundColor: 'var(--button-hover)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
+            <div style={{ color: 'var(--foreground)', opacity: 0.7 }} className="text-sm">
+              Showing {startIndex + 1} to {Math.min(endIndex, products.length)} of {products.length} products
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 border rounded-lg font-semibold transition-all"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  borderColor: 'var(--card-border)',
+                  color: 'var(--foreground)',
+                  opacity: currentPage === 1 ? 0.5 : 1,
+                }}
+              >
+                ← Previous
+              </button>
+
+              <div className="flex gap-1 items-center">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className="px-3 py-2 rounded-lg font-semibold transition-all"
+                    style={{
+                      backgroundColor: currentPage === page ? 'var(--foreground)' : 'var(--card-bg)',
+                      color: currentPage === page ? 'var(--background)' : 'var(--foreground)',
+                      borderColor: 'var(--card-border)',
+                      border: '1px solid var(--card-border)',
+                    }}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 border rounded-lg font-semibold transition-all"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  borderColor: 'var(--card-border)',
+                  color: 'var(--foreground)',
+                  opacity: currentPage === totalPages ? 0.5 : 1,
+                }}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

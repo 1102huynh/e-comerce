@@ -35,6 +35,8 @@ export default function AdminOrdersPage() {
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     if (!user || !isAdmin()) {
@@ -75,6 +77,12 @@ export default function AdminOrdersPage() {
     };
     return colors[status] || 'bg-gray-500 text-white';
   };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedOrders = orders.slice(startIndex, endIndex);
 
   if (loading) {
     return (
@@ -130,7 +138,7 @@ export default function AdminOrdersPage() {
         </div>
 
         <div className="space-y-8">
-          {orders.map((order) => (
+          {paginatedOrders.map((order) => (
             <div
               key={order.id}
               className="backdrop-blur-sm rounded-2xl p-8 border"
@@ -175,45 +183,98 @@ export default function AdminOrdersPage() {
                 </span>
               </div>
 
-              <div className="border-t border-gray-800 pt-6 mb-6">
-                <h4 className="font-bold text-white mb-4 text-lg">Items:</h4>
+              <div
+                style={{
+                  borderColor: 'var(--card-border)',
+                }}
+                className="border-t pt-6 mb-6"
+              >
+                <h4
+                  className="font-bold mb-4 text-lg"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Items:
+                </h4>
                 <div className="space-y-3">
                   {order.items.map((item) => (
-                    <div key={item.id} className="flex justify-between py-3 bg-gray-800 px-4 rounded-lg">
-                      <span className="text-white">
-                        {item.product.name} <span className="text-gray-400">x {item.quantity}</span>
+                    <div
+                      key={item.id}
+                      className="flex justify-between py-3 px-4 rounded-lg"
+                      style={{
+                        backgroundColor: 'var(--button-hover)',
+                      }}
+                    >
+                      <span style={{ color: 'var(--foreground)' }}>
+                        {item.product.name}{' '}
+                        <span style={{ color: 'var(--foreground)', opacity: 0.6 }}>
+                          x {item.quantity}
+                        </span>
                       </span>
-                      <span className="text-white font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                      <span
+                        className="font-bold"
+                        style={{ color: 'var(--foreground)' }}
+                      >
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="border-t border-gray-800 pt-6 mb-6">
+              <div
+                style={{
+                  borderColor: 'var(--card-border)',
+                }}
+                className="border-t pt-6 mb-6"
+              >
                 <div className="flex justify-between mb-4">
-                  <span className="font-bold text-white text-xl">Total:</span>
-                  <span className="font-black text-white text-2xl">
+                  <span
+                    className="font-bold text-xl"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    Total:
+                  </span>
+                  <span
+                    className="font-black text-2xl"
+                    style={{ color: 'var(--foreground)' }}
+                  >
                     ${order.totalAmount.toFixed(2)}
                   </span>
                 </div>
-                <div className="bg-gray-800 rounded-lg p-4 space-y-2">
-                  <p className="text-sm text-gray-400">
-                    <strong className="text-white">📍 Shipping:</strong> {order.shippingAddress}
+                <div
+                  className="rounded-lg p-4 space-y-2"
+                  style={{ backgroundColor: 'var(--button-hover)' }}
+                >
+                  <p style={{ color: 'var(--foreground)', fontSize: '0.875rem' }}>
+                    <strong style={{ color: 'var(--foreground)' }}>📍 Shipping:</strong> {order.shippingAddress}
                   </p>
-                  <p className="text-sm text-gray-400">
-                    <strong className="text-white">📞 Phone:</strong> {order.phone}
+                  <p style={{ color: 'var(--foreground)', fontSize: '0.875rem' }}>
+                    <strong style={{ color: 'var(--foreground)' }}>📞 Phone:</strong> {order.phone}
                   </p>
                 </div>
               </div>
 
-              <div className="border-t border-gray-800 pt-6">
-                <label className="block text-sm font-bold text-white mb-3">
+              <div
+                style={{
+                  borderColor: 'var(--card-border)',
+                }}
+                className="border-t pt-6"
+              >
+                <label
+                  className="block text-sm font-bold mb-3"
+                  style={{ color: 'var(--foreground)' }}
+                >
                   🔄 Update Status:
                 </label>
                 <select
                   value={order.status}
                   onChange={(e) => updateStatus(order.id, e.target.value)}
-                  className="w-full md:w-auto px-4 py-3 bg-gray-800 border border-gray-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
+                  style={{
+                    backgroundColor: 'var(--input-bg)',
+                    borderColor: 'var(--input-border)',
+                    color: 'var(--foreground)',
+                  }}
+                  className="w-full md:w-auto px-4 py-3 border rounded-lg focus:outline-none focus:ring-2"
                 >
                   <option value="PENDING">PENDING</option>
                   <option value="PROCESSING">PROCESSING</option>
@@ -228,10 +289,74 @@ export default function AdminOrdersPage() {
           {orders.length === 0 && (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">📦</div>
-              <div className="text-2xl text-white font-bold">No orders found</div>
+              <div className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>
+                No orders found
+              </div>
             </div>
           )}
         </div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div
+            className="mt-8 border rounded-2xl px-6 py-4 flex items-center justify-between"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+            }}
+          >
+            <div style={{ color: 'var(--foreground)', opacity: 0.7 }} className="text-sm">
+              Showing {startIndex + 1} to {Math.min(endIndex, orders.length)} of {orders.length} orders
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                className="px-4 py-2 border rounded-lg font-semibold transition-all"
+                style={{
+                  backgroundColor: 'var(--background)',
+                  borderColor: 'var(--card-border)',
+                  color: 'var(--foreground)',
+                  opacity: currentPage === 1 ? 0.5 : 1,
+                }}
+              >
+                ← Previous
+              </button>
+
+              <div className="flex gap-1 items-center">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className="px-3 py-2 rounded-lg font-semibold transition-all"
+                    style={{
+                      backgroundColor: currentPage === page ? 'var(--foreground)' : 'var(--background)',
+                      color: currentPage === page ? 'var(--background)' : 'var(--foreground)',
+                      borderColor: 'var(--card-border)',
+                      border: '1px solid var(--card-border)',
+                    }}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                className="px-4 py-2 border rounded-lg font-semibold transition-all"
+                style={{
+                  backgroundColor: 'var(--background)',
+                  borderColor: 'var(--card-border)',
+                  color: 'var(--foreground)',
+                  opacity: currentPage === totalPages ? 0.5 : 1,
+                }}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

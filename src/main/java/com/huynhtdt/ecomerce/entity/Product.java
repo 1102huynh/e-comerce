@@ -34,6 +34,9 @@ public class Product {
 
     private String imageUrl;
 
+    @Column(length = 2000)
+    private String images; // Comma-separated list of image URLs
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;

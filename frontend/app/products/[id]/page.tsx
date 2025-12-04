@@ -18,6 +18,7 @@ interface Product {
   price: number;
   stock: number;
   imageUrl: string;
+  images?: string; // comma-separated string from backend
   category: {
     id: number;
     name: string;
@@ -35,9 +36,31 @@ export default function ProductDetailPage() {
   const [loading, setLoading] = useState(true);
   const [addingToCart, setAddingToCart] = useState(false);
 
+  // gallery state
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     fetchProduct();
   }, [params.id]);
+
+  useEffect(() => {
+    // Reset gallery index when product changes
+    setCurrentImageIndex(0);
+  }, [product?.id]);
+
+  useEffect(() => {
+    // keyboard navigation for gallery
+    const onKey = (e: KeyboardEvent) => {
+      if (!product) return;
+      const galleryImages = getGalleryImages();
+      if (galleryImages.length <= 1) return;
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product, currentImageIndex]);
 
   const fetchProduct = async () => {
     try {
@@ -90,6 +113,27 @@ export default function ProductDetailPage() {
     } finally {
       setAddingToCart(false);
     }
+  };
+
+  const getGalleryImages = (): string[] => {
+    if (!product) return [];
+    // Parse comma-separated images from backend, fallback to imageUrl
+    if (product.images && product.images.trim()) {
+      return product.images.split(',').map(img => img.trim());
+    }
+    return [product.imageUrl];
+  };
+
+  const prevImage = () => {
+    const galleryImages = getGalleryImages();
+    if (galleryImages.length === 0) return;
+    setCurrentImageIndex((idx) => (idx - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const nextImage = () => {
+    const galleryImages = getGalleryImages();
+    if (galleryImages.length === 0) return;
+    setCurrentImageIndex((idx) => (idx + 1) % galleryImages.length);
   };
 
   if (loading) {
@@ -187,29 +231,98 @@ export default function ProductDetailPage() {
                   background: 'linear-gradient(to top, rgba(0,0,0,0.2), transparent)',
                 }}
               ></div>
+
+              {/* Main gallery image */}
               <Image
-                src={product.imageUrl}
-                alt={product.name}
+                src={getGalleryImages()[currentImageIndex] || product.imageUrl}
+                alt={`${product.name} - Image ${currentImageIndex + 1}`}
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
                 priority
               />
+
+              {/* left / right controls */}
+              {getGalleryImages().length > 1 && (
+                <>
+                  <button
+                    aria-label="Previous image"
+                    onClick={prevImage}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-bold transition-all hover:scale-110"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    }}
+                  >
+                    ‹
+                  </button>
+                  <button
+                    aria-label="Next image"
+                    onClick={nextImage}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl font-bold transition-all hover:scale-110"
+                    style={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    }}
+                  >
+                    ›
+                  </button>
+                  {/* indicator dots */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+                    {getGalleryImages().map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentImageIndex(i)}
+                        aria-label={`View image ${i + 1}`}
+                        className={`w-2.5 h-2.5 rounded-full transition-all ${
+                          i === currentImageIndex ? 'bg-white w-8' : 'bg-white/40 hover:bg-white/60'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+
               {/* Decorative corner elements */}
               <div
-                className="absolute top-0 right-0 w-40 h-40 z-20 rounded-bl-3xl"
+                className="absolute top-0 right-0 w-40 h-40 z-20 rounded-bl-3xl pointer-events-none"
                 style={{
                   backgroundColor: 'var(--foreground)',
                   opacity: 0.05,
                 }}
               ></div>
               <div
-                className="absolute bottom-0 left-0 w-32 h-32 z-20 rounded-tr-3xl"
+                className="absolute bottom-0 left-0 w-32 h-32 z-20 rounded-tr-3xl pointer-events-none"
                 style={{
                   backgroundColor: 'var(--foreground)',
                   opacity: 0.03,
                 }}
               ></div>
             </div>
+
+            {/* Thumbnail strip */}
+            {getGalleryImages().length > 1 && (
+              <div className="flex items-center gap-3 overflow-x-auto py-2 px-1">
+                {getGalleryImages().map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-3 transition-all hover:scale-105 ${
+                      idx === currentImageIndex ? 'border-4 shadow-lg' : 'opacity-60 hover:opacity-100'
+                    }`}
+                    style={{
+                      backgroundColor: 'var(--input-bg)',
+                      borderColor: idx === currentImageIndex ? 'var(--nav-bg)' : 'var(--card-border)',
+                    }}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${product.name} thumbnail ${idx + 1}`}
+                      width={80}
+                      height={80}
+                      className="object-cover w-full h-full"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Product Details Section */}

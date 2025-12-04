@@ -100,6 +100,7 @@ public class DataInitializer implements CommandLineRunner {
             product1.setPrice(new BigDecimal("24.99"));
             product1.setStock(150);
             product1.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product1.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product1.setCategory(baseball);
             productRepository.save(product1);
 
@@ -109,6 +110,7 @@ public class DataInitializer implements CommandLineRunner {
             product2.setPrice(new BigDecimal("32.99"));
             product2.setStock(120);
             product2.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product2.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product2.setCategory(snapback);
             productRepository.save(product2);
 
@@ -118,6 +120,7 @@ public class DataInitializer implements CommandLineRunner {
             product3.setPrice(new BigDecimal("27.99"));
             product3.setStock(100);
             product3.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product3.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product3.setCategory(trucker);
             productRepository.save(product3);
 
@@ -127,6 +130,7 @@ public class DataInitializer implements CommandLineRunner {
             product4.setPrice(new BigDecimal("19.99"));
             product4.setStock(200);
             product4.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product4.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product4.setCategory(beanie);
             productRepository.save(product4);
 
@@ -136,6 +140,7 @@ public class DataInitializer implements CommandLineRunner {
             product5.setPrice(new BigDecimal("29.99"));
             product5.setStock(85);
             product5.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product5.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product5.setCategory(bucket);
             productRepository.save(product5);
 
@@ -145,6 +150,7 @@ public class DataInitializer implements CommandLineRunner {
             product6.setPrice(new BigDecimal("49.99"));
             product6.setStock(60);
             product6.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product6.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product6.setCategory(fedora);
             productRepository.save(product6);
 
@@ -154,6 +160,7 @@ public class DataInitializer implements CommandLineRunner {
             product7.setPrice(new BigDecimal("34.99"));
             product7.setStock(110);
             product7.setImageUrl("https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
+            product7.setImages("https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product7.setCategory(baseball);
             productRepository.save(product7);
 
@@ -163,6 +170,7 @@ public class DataInitializer implements CommandLineRunner {
             product8.setPrice(new BigDecimal("36.99"));
             product8.setStock(75);
             product8.setImageUrl("https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
+            product8.setImages("https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
             product8.setCategory(snapback);
             productRepository.save(product8);
 
@@ -172,6 +180,7 @@ public class DataInitializer implements CommandLineRunner {
             product9.setPrice(new BigDecimal("24.99"));
             product9.setStock(130);
             product9.setImageUrl("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600");
+            product9.setImages("https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product9.setCategory(beanie);
             productRepository.save(product9);
 
@@ -181,6 +190,7 @@ public class DataInitializer implements CommandLineRunner {
             product10.setPrice(new BigDecimal("32.99"));
             product10.setStock(95);
             product10.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product10.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product10.setCategory(bucket);
             productRepository.save(product10);
 
@@ -190,6 +200,7 @@ public class DataInitializer implements CommandLineRunner {
             product11.setPrice(new BigDecimal("54.99"));
             product11.setStock(45);
             product11.setImageUrl("https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
+            product11.setImages("https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product11.setCategory(fedora);
             productRepository.save(product11);
 
@@ -199,6 +210,7 @@ public class DataInitializer implements CommandLineRunner {
             product12.setPrice(new BigDecimal("26.99"));
             product12.setStock(105);
             product12.setImageUrl("https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600");
+            product12.setImages("https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product12.setCategory(trucker);
             productRepository.save(product12);
 
@@ -208,6 +220,7 @@ public class DataInitializer implements CommandLineRunner {
             product13.setPrice(new BigDecimal("22.99"));
             product13.setStock(140);
             product13.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product13.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product13.setCategory(baseball);
             productRepository.save(product13);
 
@@ -217,6 +230,7 @@ public class DataInitializer implements CommandLineRunner {
             product14.setPrice(new BigDecimal("28.99"));
             product14.setStock(95);
             product14.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product14.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
             product14.setCategory(snapback);
             productRepository.save(product14);
 
@@ -226,6 +240,7 @@ public class DataInitializer implements CommandLineRunner {
             product15.setPrice(new BigDecimal("25.99"));
             product15.setStock(110);
             product15.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product15.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product15.setCategory(trucker);
             productRepository.save(product15);
 
@@ -235,6 +250,7 @@ public class DataInitializer implements CommandLineRunner {
             product16.setPrice(new BigDecimal("21.99"));
             product16.setStock(160);
             product16.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product16.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product16.setCategory(beanie);
             productRepository.save(product16);
 
@@ -244,6 +260,7 @@ public class DataInitializer implements CommandLineRunner {
             product17.setPrice(new BigDecimal("30.99"));
             product17.setStock(85);
             product17.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product17.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product17.setCategory(bucket);
             productRepository.save(product17);
 
@@ -253,6 +270,7 @@ public class DataInitializer implements CommandLineRunner {
             product18.setPrice(new BigDecimal("55.99"));
             product18.setStock(50);
             product18.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product18.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product18.setCategory(fedora);
             productRepository.save(product18);
 
@@ -262,6 +280,7 @@ public class DataInitializer implements CommandLineRunner {
             product19.setPrice(new BigDecimal("23.99"));
             product19.setStock(130);
             product19.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product19.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product19.setCategory(baseball);
             productRepository.save(product19);
 
@@ -271,6 +290,7 @@ public class DataInitializer implements CommandLineRunner {
             product20.setPrice(new BigDecimal("31.99"));
             product20.setStock(105);
             product20.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product20.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product20.setCategory(snapback);
             productRepository.save(product20);
 
@@ -280,6 +300,7 @@ public class DataInitializer implements CommandLineRunner {
             product21.setPrice(new BigDecimal("27.99"));
             product21.setStock(100);
             product21.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product21.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product21.setCategory(trucker);
             productRepository.save(product21);
 
@@ -289,6 +310,7 @@ public class DataInitializer implements CommandLineRunner {
             product22.setPrice(new BigDecimal("23.99"));
             product22.setStock(125);
             product22.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product22.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product22.setCategory(beanie);
             productRepository.save(product22);
 
@@ -298,6 +320,7 @@ public class DataInitializer implements CommandLineRunner {
             product23.setPrice(new BigDecimal("31.99"));
             product23.setStock(90);
             product23.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product23.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product23.setCategory(bucket);
             productRepository.save(product23);
 
@@ -307,6 +330,7 @@ public class DataInitializer implements CommandLineRunner {
             product24.setPrice(new BigDecimal("58.99"));
             product24.setStock(40);
             product24.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product24.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product24.setCategory(fedora);
             productRepository.save(product24);
 
@@ -316,6 +340,7 @@ public class DataInitializer implements CommandLineRunner {
             product25.setPrice(new BigDecimal("26.99"));
             product25.setStock(150);
             product25.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product25.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product25.setCategory(baseball);
             productRepository.save(product25);
 
@@ -325,6 +350,7 @@ public class DataInitializer implements CommandLineRunner {
             product26.setPrice(new BigDecimal("29.99"));
             product26.setStock(80);
             product26.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product26.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product26.setCategory(snapback);
             productRepository.save(product26);
 
@@ -334,6 +360,7 @@ public class DataInitializer implements CommandLineRunner {
             product27.setPrice(new BigDecimal("26.99"));
             product27.setStock(115);
             product27.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product27.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product27.setCategory(trucker);
             productRepository.save(product27);
 
@@ -343,6 +370,7 @@ public class DataInitializer implements CommandLineRunner {
             product28.setPrice(new BigDecimal("24.99"));
             product28.setStock(140);
             product28.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product28.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product28.setCategory(beanie);
             productRepository.save(product28);
 
@@ -352,6 +380,7 @@ public class DataInitializer implements CommandLineRunner {
             product29.setPrice(new BigDecimal("29.99"));
             product29.setStock(95);
             product29.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product29.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product29.setCategory(bucket);
             productRepository.save(product29);
 
@@ -361,6 +390,7 @@ public class DataInitializer implements CommandLineRunner {
             product30.setPrice(new BigDecimal("52.99"));
             product30.setStock(55);
             product30.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product30.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product30.setCategory(fedora);
             productRepository.save(product30);
 
@@ -370,6 +400,7 @@ public class DataInitializer implements CommandLineRunner {
             product31.setPrice(new BigDecimal("24.99"));
             product31.setStock(135);
             product31.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product31.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product31.setCategory(baseball);
             productRepository.save(product31);
 
@@ -379,6 +410,7 @@ public class DataInitializer implements CommandLineRunner {
             product32.setPrice(new BigDecimal("30.99"));
             product32.setStock(85);
             product32.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product32.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product32.setCategory(snapback);
             productRepository.save(product32);
 
@@ -388,6 +420,7 @@ public class DataInitializer implements CommandLineRunner {
             product33.setPrice(new BigDecimal("28.99"));
             product33.setStock(100);
             product33.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product33.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product33.setCategory(trucker);
             productRepository.save(product33);
 
@@ -397,6 +430,7 @@ public class DataInitializer implements CommandLineRunner {
             product34.setPrice(new BigDecimal("29.99"));
             product34.setStock(110);
             product34.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product34.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product34.setCategory(beanie);
             productRepository.save(product34);
 
@@ -406,6 +440,7 @@ public class DataInitializer implements CommandLineRunner {
             product35.setPrice(new BigDecimal("32.99"));
             product35.setStock(80);
             product35.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product35.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product35.setCategory(bucket);
             productRepository.save(product35);
 
@@ -415,6 +450,7 @@ public class DataInitializer implements CommandLineRunner {
             product36.setPrice(new BigDecimal("56.99"));
             product36.setStock(45);
             product36.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product36.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product36.setCategory(fedora);
             productRepository.save(product36);
 
@@ -424,6 +460,7 @@ public class DataInitializer implements CommandLineRunner {
             product37.setPrice(new BigDecimal("25.99"));
             product37.setStock(145);
             product37.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product37.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product37.setCategory(baseball);
             productRepository.save(product37);
 
@@ -433,6 +470,7 @@ public class DataInitializer implements CommandLineRunner {
             product38.setPrice(new BigDecimal("29.99"));
             product38.setStock(90);
             product38.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product38.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product38.setCategory(snapback);
             productRepository.save(product38);
 
@@ -442,6 +480,7 @@ public class DataInitializer implements CommandLineRunner {
             product39.setPrice(new BigDecimal("27.99"));
             product39.setStock(105);
             product39.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product39.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product39.setCategory(trucker);
             productRepository.save(product39);
 
@@ -451,6 +490,7 @@ public class DataInitializer implements CommandLineRunner {
             product40.setPrice(new BigDecimal("24.99"));
             product40.setStock(135);
             product40.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product40.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product40.setCategory(beanie);
             productRepository.save(product40);
 
@@ -460,6 +500,7 @@ public class DataInitializer implements CommandLineRunner {
             product41.setPrice(new BigDecimal("33.99"));
             product41.setStock(75);
             product41.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product41.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product41.setCategory(bucket);
             productRepository.save(product41);
 
@@ -469,6 +510,7 @@ public class DataInitializer implements CommandLineRunner {
             product42.setPrice(new BigDecimal("54.99"));
             product42.setStock(50);
             product42.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product42.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product42.setCategory(fedora);
             productRepository.save(product42);
 
@@ -478,6 +520,7 @@ public class DataInitializer implements CommandLineRunner {
             product43.setPrice(new BigDecimal("23.99"));
             product43.setStock(140);
             product43.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product43.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product43.setCategory(baseball);
             productRepository.save(product43);
 
@@ -487,6 +530,7 @@ public class DataInitializer implements CommandLineRunner {
             product44.setPrice(new BigDecimal("28.99"));
             product44.setStock(85);
             product44.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product44.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product44.setCategory(snapback);
             productRepository.save(product44);
 
@@ -496,6 +540,7 @@ public class DataInitializer implements CommandLineRunner {
             product45.setPrice(new BigDecimal("26.99"));
             product45.setStock(120);
             product45.setImageUrl("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600");
+            product45.setImages("https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=600,https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
             product45.setCategory(trucker);
             productRepository.save(product45);
 
@@ -505,6 +550,7 @@ public class DataInitializer implements CommandLineRunner {
             product46.setPrice(new BigDecimal("22.99"));
             product46.setStock(150);
             product46.setImageUrl("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600");
+            product46.setImages("https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600,https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product46.setCategory(beanie);
             productRepository.save(product46);
 
@@ -514,6 +560,7 @@ public class DataInitializer implements CommandLineRunner {
             product47.setPrice(new BigDecimal("28.99"));
             product47.setStock(100);
             product47.setImageUrl("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600");
+            product47.setImages("https://images.unsplash.com/photo-1576662712957-9c79ae1280f8?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600");
             product47.setCategory(bucket);
             productRepository.save(product47);
 
@@ -523,6 +570,7 @@ public class DataInitializer implements CommandLineRunner {
             product48.setPrice(new BigDecimal("59.99"));
             product48.setStock(40);
             product48.setImageUrl("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600");
+            product48.setImages("https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?w=600,https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product48.setCategory(fedora);
             productRepository.save(product48);
 
@@ -532,6 +580,7 @@ public class DataInitializer implements CommandLineRunner {
             product49.setPrice(new BigDecimal("24.99"));
             product49.setStock(130);
             product49.setImageUrl("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600");
+            product49.setImages("https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600,https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600");
             product49.setCategory(baseball);
             productRepository.save(product49);
 
@@ -541,6 +590,7 @@ public class DataInitializer implements CommandLineRunner {
             product50.setPrice(new BigDecimal("32.99"));
             product50.setStock(70);
             product50.setImageUrl("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600");
+            product50.setImages("https://images.unsplash.com/photo-1575428652377-a2d80e2277fc?w=600,https://images.unsplash.com/photo-1606902965551-dce093cda6e7?w=600,https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600,https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600");
             product50.setCategory(snapback);
             productRepository.save(product50);
         }

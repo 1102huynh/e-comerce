@@ -34,6 +34,7 @@ export default function ProductsPage() {
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [sortBy, setSortBy] = useState<'newest' | 'price-asc' | 'price-desc' | 'popular'>('newest');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -43,7 +44,6 @@ export default function ProductsPage() {
   const searchTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    fetchProducts();
     fetchCategories();
   }, []);
 
@@ -102,17 +102,18 @@ export default function ProductsPage() {
 
   // Handle page changes
   useEffect(() => {
-    if (currentPage > 1) {
-      handleApplyFilters();
-    }
+    handleApplyFilters();
   }, [currentPage]);
 
   const fetchProducts = async () => {
     try {
+      setError(null);
       const response = await api.get('/products');
       setProducts(response.data);
+      setTotalProducts(response.data.length);
     } catch (error) {
       console.error('Failed to fetch products', error);
+      setError('Failed to load products. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -129,46 +130,49 @@ export default function ProductsPage() {
 
   const handleApplyFilters = async () => {
     setLoading(true);
+    setError(null);
     try {
-      const offset = (currentPage - 1) * pageSize;
-      let filteredProducts: Product[];
-      let total: number;
+      let allProducts: Product[] = [];
 
       // Apply search filter
       if (debouncedSearch.trim()) {
-        const response = await api.get(`/products/search?keyword=${debouncedSearch}&limit=${pageSize}&offset=${offset}`);
-        filteredProducts = Array.isArray(response.data) ? response.data : response.data.items || [];
-        total = response.data.total || filteredProducts.length;
+        const response = await api.get(`/products/search?keyword=${debouncedSearch}`);
+        allProducts = Array.isArray(response.data) ? response.data : [];
       } else if (selectedCategory) {
-        const response = await api.get(`/products/category/${selectedCategory}?limit=${pageSize}&offset=${offset}`);
-        filteredProducts = Array.isArray(response.data) ? response.data : response.data.items || [];
-        total = response.data.total || filteredProducts.length;
+        const response = await api.get(`/products/category/${selectedCategory}`);
+        allProducts = Array.isArray(response.data) ? response.data : [];
       } else {
-        const response = await api.get(`/products?limit=${pageSize}&offset=${offset}`);
-        filteredProducts = Array.isArray(response.data) ? response.data : response.data.items || [];
-        total = response.data.total || filteredProducts.length;
+        const response = await api.get(`/products`);
+        allProducts = Array.isArray(response.data) ? response.data : [];
       }
 
       // Apply sorting
       switch (sortBy) {
         case 'price-asc':
-          filteredProducts.sort((a, b) => a.price - b.price);
+          allProducts.sort((a, b) => a.price - b.price);
           break;
         case 'price-desc':
-          filteredProducts.sort((a, b) => b.price - a.price);
+          allProducts.sort((a, b) => b.price - a.price);
           break;
         case 'popular':
-          filteredProducts.sort((a, b) => b.stock - a.stock);
+          allProducts.sort((a, b) => b.stock - a.stock);
           break;
         case 'newest':
         default:
           break;
       }
 
-      setProducts(filteredProducts);
-      setTotalProducts(total);
+      // Set total products
+      setTotalProducts(allProducts.length);
+
+      // Paginate results
+      const offset = (currentPage - 1) * pageSize;
+      const paginatedProducts = allProducts.slice(offset, offset + pageSize);
+
+      setProducts(paginatedProducts);
     } catch (error) {
       console.error('Failed to apply filters', error);
+      setError('Failed to load products. Please check your connection and try again.');
       setProducts([]);
       setTotalProducts(0);
     } finally {
@@ -186,7 +190,7 @@ export default function ProductsPage() {
     setSelectedCategory(null);
     setSortBy('newest');
     setCurrentPage(1);
-    fetchProducts();
+    setError(null);
   };
 
   const totalPages = Math.ceil(totalProducts / pageSize);
@@ -501,6 +505,33 @@ export default function ProductsPage() {
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-16">
+        {error && (
+          <div
+            className="mb-8 p-6 rounded-2xl border-2 text-center"
+            style={{
+              backgroundColor: 'rgba(239, 68, 68, 0.1)',
+              borderColor: 'rgba(239, 68, 68, 0.3)',
+              color: '#ef4444',
+            }}
+          >
+            <p className="text-lg font-bold mb-2">⚠️ Error Loading Products</p>
+            <p className="opacity-80">{error}</p>
+            <button
+              onClick={() => {
+                setError(null);
+                handleApplyFilters();
+              }}
+              className="mt-4 px-6 py-2 rounded-lg font-semibold transition-all hover:opacity-80"
+              style={{
+                backgroundColor: '#ef4444',
+                color: 'white',
+              }}
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 gap-6">
             <div className="relative w-20 h-20">
